@@ -18,7 +18,7 @@
 $cakeDescription = 'CakePHP: the rapid development php framework';
 ?>
 <!DOCTYPE html>
-<html>
+<html class="h-100">
 
 <head>
     <?= $this->Html->charset() ?>
@@ -42,21 +42,26 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     ]) ?>
 </head>
 
-<body>
+<body class="h-100">
 
-    <?= $this->Element('nav') ?>
-    <main class="main">
-        <div class="container">
-            <?= $this->Flash->render() ?>
-            <?= $this->fetch('content') ?>
+    <div class="row h-100">
+            <?= $this->Element('nav') ?>
+        <div class="col p-0">
+            <div class="container-fluid p-0">
+                <?= $this->Flash->render() ?>
+                <?= $this->fetch('content') ?>
+            </div>
         </div>
-    </main>
-    <footer>
-    </footer>
-    <?= $this->Html->script([
-        'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js'
+    </div>
+    <!-- <main class="main"> -->
 
-    ]) ?>
+        <!-- </main> -->
+        <footer>
+        </footer>
+        <?= $this->Html->script([
+            'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js'
+
+        ]) ?>
 </body>
 
 </html>
