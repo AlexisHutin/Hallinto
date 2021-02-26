@@ -31,7 +31,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?>
+    <!-- <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?> -->
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -46,8 +46,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <div class="row h-100">
             <?= $this->Element('nav') ?>
-        <div class="col p-0">
-            <div class="container-fluid p-0">
+        <div class="col">
+            <div class="container-fluid">
                 <?= $this->Flash->render() ?>
                 <?= $this->fetch('content') ?>
             </div>

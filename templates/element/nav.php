@@ -4,5 +4,6 @@
         Hallinto
     </h1>
 
+    <?= $this->Html->link('Event', ['controller' => 'Events', 'action' => 'index'], ['class' => 'nav-link']) ?>
     
 </div>
