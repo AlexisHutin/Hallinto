@@ -3,7 +3,7 @@
         ['Dashboard', ''],
         ['Événements', 'Events'],
         ['Comptabilité', 'Accounting'],
-        ['Statistiques', 'Stats']
+        ['Statistiques', 'Statistiques']
     ];
 ?>
 
