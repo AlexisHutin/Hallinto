@@ -2,7 +2,7 @@
     $pages=[
         ['Dashboard', ''],
         ['Événements', 'Events'],
-        ['Comptabilité', 'Accounting'],
+        ['Comptabilité', 'AccountingEntries'],
         ['Statistiques', 'Statistiques']
     ];
 ?>
