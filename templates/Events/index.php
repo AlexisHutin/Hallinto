@@ -13,9 +13,9 @@
     <!-- Filtres -->
     <div class="row">
         <div class="col">
-            <div class="card mt-2 p-2">
+            <div class="card mt-2">
                 <p>Filtres :</p>
-                
+
                 ici les différents filtres
             </div>
         </div>
@@ -27,27 +27,34 @@
 
             <div class="col-3">
                 <div class="card mt-4 mb-4">
-                    <div class="card-header">
-                        <h3>
+                    <div class="card-header p-2">
+                    <!-- picto type event -->
+                    
+                        <h4>
                             <?= h($event->event_name) ?>
-                        </h3>
+                        </h4>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-
-                            Lieu :
-                            <?= h($event->location) ?>
-                        </div>
+                            <p>
+                            <!-- picto lieu -->
+                                Lieu : 
+                                <?= h($event->location) ?>
+                            </p>
+                            <small class="float-right">
+                            <!-- picto date -->
+                                Date :
+                                <?= h($event->start_date->format('d-m-Y')) ?>
+                            </small>
                     </div>
-                    <div class="card-footer">
+                    <div class="card-footer p-2">
                         <!-- TODO edit & view link to open modal and not page -->
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $event->id_event], ['class' => 'btn btn-primary btn-sm float-right mr-1 ml-1']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $event->id_event], ['class' => 'btn btn-outline-primary btn-sm float-right mr-1 ml-1']) ?>
                         <?= $this->Form->postLink(
                             __('Delete'),
                             ['action' => 'delete', $event->id_event],
-                            ['confirm' => __('Are you sure you want to delete # {0}?', $event->id_event), 'class' => 'btn btn-outline-danger btn-sm float-right mr-1 ml-1']
+                            ['confirm' => __('Are you sure you want to delete # {0}?', $event->id_event), 'class' => 'btn btn-outline-danger btn-sm float-right ml-1']
                         ) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $event->id_event], ['class' => 'btn btn-outline-primary btn-sm float-right mr-1 ml-1']) ?>
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $event->id_event], ['class' => 'btn btn-primary btn-sm float-right mr-1 ml-1']) ?>
 
                     </div>
                 </div>
