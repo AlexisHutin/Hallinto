@@ -8,7 +8,8 @@
 ?>
 
 
-<div class="col-2 h-100  bg-secondary text-white">
+<div class="col-2 bg-secondary text-white">
+<div class="sticky-top">
     <nav class="navbar d-block p-0">
     <h1 class="d-block p-3 text-center">
         Hallinto
@@ -22,4 +23,5 @@
     </ul>
 
     </nav>
+    </div>
 </div>
