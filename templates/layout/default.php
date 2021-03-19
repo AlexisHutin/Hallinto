@@ -60,8 +60,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <footer>
         </footer>
         <?= $this->Html->script([
+            'https://code.jquery.com/jquery-3.6.0.min.js',
             'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js'
-
+            
         ]) ?>
 </body>
 
