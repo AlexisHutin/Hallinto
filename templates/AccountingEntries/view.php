@@ -19,24 +19,32 @@
             <h3><?= h($accountingEntry->id_accounting_entries) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Id Accounting Entries') ?></th>
-                    <td><?= $this->Number->format($accountingEntry->id_accounting_entries) ?></td>
+                    <th><?= __('Id') ?></th>
+                    <td><?= $this->Number->format($accountingEntry->id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Association Id') ?></th>
+                    <td><?= $this->Number->format($accountingEntry->association_id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Type Of Accounting Entry Id') ?></th>
+                    <td><?= $this->Number->format($accountingEntry->type_of_accounting_entry_id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Event Id') ?></th>
+                    <td><?= $this->Number->format($accountingEntry->event_id) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Amount') ?></th>
                     <td><?= $this->Number->format($accountingEntry->amount) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
-                    <td><?= $this->Number->format($accountingEntry->id) ?></td>
+                    <th><?= __('Created On') ?></th>
+                    <td><?= h($accountingEntry->created_on) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id Association') ?></th>
-                    <td><?= $this->Number->format($accountingEntry->id_association) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Created') ?></th>
-                    <td><?= h($accountingEntry->created) ?></td>
+                    <th><?= __('Updated On') ?></th>
+                    <td><?= h($accountingEntry->updated_on) ?></td>
                 </tr>
             </table>
         </div>

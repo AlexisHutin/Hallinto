@@ -17,9 +17,9 @@
             <fieldset>
                 <legend><?= __('Add Accounting Entry') ?></legend>
                 <?php
+                    echo $this->Form->control('type_of_accounting_entry_id');
+                    echo $this->Form->control('event_id');
                     echo $this->Form->control('amount');
-                    echo $this->Form->control('id');
-                    echo $this->Form->control('id_association');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
