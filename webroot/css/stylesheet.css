@@ -1,0 +1,52 @@
+/*************
+    Global
+*************/
+
+:root{
+  --dark-purple:#161023;
+  --light-purple:#A896CF;
+
+  --white:#ffffff;
+}
+
+body{
+  font-family: 'Quicksand', sans-serif;
+}
+
+h1{
+  font-weight:700;
+}
+
+.jumbotron{
+  background-color:transparent;
+}
+
+/*************
+    Navbar
+*************/
+
+.left-nav{
+  background-color:var(--dark-purple);
+}
+
+.left-nav img{
+  width:185px;
+}
+
+.left-nav li a{
+  color:var(--white);
+}
+.left-nav li:hover{
+  background-color:var(--light-purple);
+}
+
+/*************
+  Animations
+*************/
+
+.background-fade{
+  -webkit-transition: background-color 0.5s ease-out;
+  -moz-transition: background-color 0.5s ease-out;
+  -o-transition: background-color 0.5s ease-out;
+  transition: background-color 0.5s ease-out;
+}
