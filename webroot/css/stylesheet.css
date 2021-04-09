@@ -4,8 +4,10 @@
 
 :root{
   --dark-purple:#161023;
+  --medium-purple:#543D86;
   --light-purple:#A896CF;
   --dark-orange:#CF7255;
+
 
 
   --white:#ffffff;
@@ -30,6 +32,19 @@ i{
 .btn-primary {
   background-color:var(--dark-orange);
   border:none;
+}
+
+.card{
+  border-radius: 15px;
+  border: 2px solid #E1E5EA;
+}
+
+.purple-font{
+  color:var(--medium-purple);
+}
+
+.Key-number{
+  font-size:35px;
 }
 
 /*************
@@ -67,4 +82,12 @@ i{
   -moz-transition: background-color 0.5s ease-out;
   -o-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
+}
+
+/*************
+    Charts
+*************/
+
+.dashboard.chart-container{
+  bottom:-15px;
 }
