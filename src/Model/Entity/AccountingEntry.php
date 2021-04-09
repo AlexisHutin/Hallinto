@@ -10,11 +10,16 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $association_id
- * @property int $type_of_accounting_entry_id
+ * @property int $accounting_entry_type_id
  * @property int|null $event_id
  * @property string|null $amount
- * @property \Cake\I18n\FrozenDate|null $created_on
- * @property \Cake\I18n\FrozenDate|null $updated_on
+ * @property string|null $reason
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $updated
+ *
+ * @property \App\Model\Entity\Association $association
+ * @property \App\Model\Entity\TypeOfAccountingEntry $type_of_accounting_entry
+ * @property \App\Model\Entity\Event $event
  */
 class AccountingEntry extends Entity
 {
@@ -29,10 +34,14 @@ class AccountingEntry extends Entity
      */
     protected $_accessible = [
         'association_id' => true,
-        'type_of_accounting_entry_id' => true,
+        'accounting_entry_type_id' => true,
         'event_id' => true,
         'amount' => true,
-        'created_on' => true,
-        'updated_on' => true,
+        'reason' => true,
+        'created' => true,
+        'updated' => true,
+        'association' => true,
+        'type_of_accounting_entry' => true,
+        'event' => true,
     ];
 }
