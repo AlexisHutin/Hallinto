@@ -154,75 +154,46 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
         $this->addPlugin('Authentication');
     }
 
-    // /**
-    //  * Returns a service provider instance.
-    //  *
-    //  * @param \Psr\Http\Message\ServerRequestInterface $request Request
-    //  * @return \Authentication\AuthenticationServiceInterface
-    //  */
-    // public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
-    // {
-    //     $service = new AuthenticationService();
-
-    //     // Define where users should be redirected to when they are not authenticated
-    //     $service->setConfig([
-    //         'unauthenticatedRedirect' => Router::url([
-    //                 'prefix' => false,
-    //                 'plugin' => null,
-    //                 'controller' => 'Users',
-    //                 'action' => 'login',
-    //         ]),
-    //         'queryParam' => 'redirect',
-    //     ]);
-
-    //     $fields = [
-    //         IdentifierInterface::CREDENTIAL_USERNAME => 'email',
-    //         IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
-    //     ];
-    //     // Load the authenticators. Session should be first.
-    //     $service->loadAuthenticator('Authentication.Session');
-    //     $service->loadAuthenticator('Authentication.Form', [
-    //         'fields' => $fields,
-    //         'loginUrl' => Router::url([
-    //             'prefix' => false,
-    //             'plugin' => null,
-    //             'controller' => 'Users',
-    //             'action' => 'login',
-    //         ]),
-    //     ]);
-
-    //     // Load identifiers
-    //     $service->loadIdentifier('Authentication.Password', compact('fields'));
-
-    //     return $service;
-    // }
-
+    /**
+     * Returns a service provider instance.
+     *
+     * @param \Psr\Http\Message\ServerRequestInterface $request Request
+     * @return \Authentication\AuthenticationServiceInterface
+     */
     public function getAuthenticationService(ServerRequestInterface $request): AuthenticationServiceInterface
     {
-        $authenticationService = new AuthenticationService([
-            'unauthenticatedRedirect' => '/users/login',
+        $service = new AuthenticationService();
+
+        // Define where users should be redirected to when they are not authenticated
+        $service->setConfig([
+            'unauthenticatedRedirect' => Router::url([
+                    'prefix' => false,
+                    'plugin' => null,
+                    'controller' => 'Users',
+                    'action' => 'login',
+            ]),
             'queryParam' => 'redirect',
         ]);
 
-        // Charge les identifiants et s'assure que nous vérifions les champs e-mail et mot de passe
-        $authenticationService->loadIdentifier('Authentication.Password', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ]
+        $fields = [
+            IdentifierInterface::CREDENTIAL_USERNAME => 'email',
+            IdentifierInterface::CREDENTIAL_PASSWORD => 'password'
+        ];
+        // Load the authenticators. Session should be first.
+        $service->loadAuthenticator('Authentication.Session');
+        $service->loadAuthenticator('Authentication.Form', [
+            'fields' => $fields,
+            'loginUrl' => Router::url([
+                'prefix' => false,
+                'plugin' => null,
+                'controller' => 'Users',
+                'action' => 'login',
+            ]),
         ]);
 
-        // Charge les authenticators, nous voulons celui de session en premier
-        $authenticationService->loadAuthenticator('Authentication.Session');
-        // Configure la vérification des données du formulaire pour choisir l'email et le mot de passe
-        $authenticationService->loadAuthenticator('Authentication.Form', [
-            'fields' => [
-                'username' => 'email',
-                'password' => 'password',
-            ],
-            'loginUrl' => '/users/login',
-        ]);
+        // Load identifiers
+        $service->loadIdentifier('Authentication.Password', compact('fields'));
 
-        return $authenticationService;
+        return $service;
     }
 }
