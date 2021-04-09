@@ -24,8 +24,6 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccountingEntry[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\AccountingEntry[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\AccountingEntry[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
- *
- * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AccountingEntriesTable extends Table
 {
@@ -43,7 +41,17 @@ class AccountingEntriesTable extends Table
         $this->setDisplayField('id_accounting_entries');
         $this->setPrimaryKey('id_accounting_entries');
 
-        $this->addBehavior('Timestamp');
+        $this->belongsTo('Associations', [
+            'foreignKey' => 'association_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('TypeOfAccountingEntries', [
+            'foreignKey' => 'type_of_accounting_entry_id',
+            'joinType' => 'INNER',
+        ]);
+        $this->belongsTo('Events', [
+            'foreignKey' => 'event_id',
+        ]);
     }
 
     /**
@@ -55,23 +63,37 @@ class AccountingEntriesTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id_accounting_entries')
-            ->allowEmptyString('id_accounting_entries', null, 'create');
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
 
         $validator
             ->decimal('amount')
             ->allowEmptyString('amount');
 
         $validator
-            ->integer('id')
-            ->requirePresence('id', 'create')
-            ->notEmptyString('id');
+            ->date('created_on')
+            ->allowEmptyDate('created_on');
 
         $validator
-            ->integer('id_association')
-            ->requirePresence('id_association', 'create')
-            ->notEmptyString('id_association');
+            ->date('updated_on')
+            ->allowEmptyDate('updated_on');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['association_id'], 'Associations'), ['errorField' => 'association_id']);
+        $rules->add($rules->existsIn(['type_of_accounting_entry_id'], 'TypeOfAccountingEntries'), ['errorField' => 'type_of_accounting_entry_id']);
+        $rules->add($rules->existsIn(['event_id'], 'Events'), ['errorField' => 'event_id']);
+
+        return $rules;
     }
 }
