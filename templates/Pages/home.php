@@ -1,6 +1,7 @@
-<div class="jumbotron jumbotron-fluid p-4 bg-light">
+
+<div class="jumbotron jumbotron-fluid p-4 ">
   <div class="row px-4">
-    <h2><small>Dashboard</small></h2>
+    <h1>Dashboard</h1>
   </div>
 </div>
 <div class="container-fluid text-center">
@@ -16,10 +17,36 @@
     </button>
   </div>
 </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-3">
+
+    </div>
+    <div class="col-6">
+      <div class="col-12">
+        <p>TOTAL</p>
+      </div>
+      <div class="col-12">
+        <canvas id="myChart" ></canvas>
+      </div>
+      
+    </div>
+    <div class="col-3">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6">
+    </div>
+    <div class="col-6">
+    </div>
+  </div>
+</div>
 
 <?php
 
 echo $this->element('Pages/modal',['modalType' =>'addMemberModal']);
 echo $this->element('Pages/modal',['modalType' =>'addComptaModal']);
 echo $this->element('Pages/modal',['modalType' =>'addEventModal']);
+?>
 
+<?= $this->Html->script(['Pages/dashboardChart']) ?>

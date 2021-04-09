@@ -8,17 +8,23 @@
         <div class="col-12">
         <?= $this->Form->create() ?>
             <fieldset>
-                <?= $this->Form->control('email', ['required' => true,'type' => 'text','placeholder' => 'hello@email.fr','class' =>'form-control','id'=>'emailInput']) ?>
-                <?= $this->Form->control('password', ['required' => true,'class' =>'form-control','id'=>'passwordInput']) ?>
+                <div class="mt-4">
+                    <?= $this->Form->control('email', ['required' => true,'type' => 'text','placeholder' => 'hello@email.fr','class' =>'form-control','id'=>'emailInput']) ?>
+                </div>
+                <div class="mt-4">
+                    <?= $this->Form->control('password', ['required' => true,'class' =>'form-control','id'=>'passwordInput']) ?>
+                </div>
             </fieldset>
         </div>
-        <div class="row col-12">
-            <div class="col-6">
-                <?= $this->Form->submit(__('Login'), ['class' =>'btn btn-primary col-6']); ?>
-            </div>
-            <div class="col-6">
-                <?= $this->Html->link("Créer un compte", ['action' => 'add']) ?>
-            </div>
+        <div class="row col-12 text-center mt-4">
+
+                <div class="col-6">
+                    <?= $this->Form->submit(__('Login'), ['class' =>'btn btn-primary col-6']); ?>
+                </div>
+                <div class="col-6">
+                    <?= $this->Html->link("Créer un compte", ['action' => 'add', 'class' =>'btn btn-primary']) ?>
+                </div>
+
         </div>
         <?= $this->Form->end() ?>            
     </div>

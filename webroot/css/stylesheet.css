@@ -5,6 +5,8 @@
 :root{
   --dark-purple:#161023;
   --light-purple:#A896CF;
+  --dark-orange:#CF7255;
+
 
   --white:#ffffff;
 }
@@ -17,8 +19,17 @@ h1{
   font-weight:700;
 }
 
+i{
+  color:var(--white);
+}
+
 .jumbotron{
   background-color:transparent;
+}
+
+.btn-primary {
+  background-color:var(--dark-orange);
+  border:none;
 }
 
 /*************
@@ -33,12 +44,19 @@ h1{
   width:185px;
 }
 
-.left-nav li a{
+.left-nav li a,
+.left-nav li a:hover{
   color:var(--white);
 }
+
+.left-nav li{
+  padding:0 8px;
+}
+
 .left-nav li:hover{
   background-color:var(--light-purple);
 }
+
 
 /*************
   Animations
