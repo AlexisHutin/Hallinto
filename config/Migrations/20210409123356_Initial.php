@@ -257,12 +257,12 @@ class Initial extends AbstractMigration
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addIndex(
                 [
@@ -308,12 +308,12 @@ class Initial extends AbstractMigration
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addIndex(
                 [
@@ -407,12 +407,12 @@ class Initial extends AbstractMigration
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addColumn('image_name', 'string', [
                 'default' => null,
