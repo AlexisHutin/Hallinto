@@ -4,6 +4,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
+
+use Cake\I18n\FrozenTime;
 ?>
 <div class="jumbotron jumbotron-fluid p-4 bg-light">
   <div class="container-fluid">
@@ -11,9 +13,9 @@
   </div>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="">
-            <div class="users form form-group">
+    <div class="row form form-group">
+        <div class="col-12">
+            <div class=" ">
                 <?= $this->Form->create($user) ?>
                 <fieldset>
                     <legend><?= __('Add User') ?></legend>
@@ -23,16 +25,21 @@
                         echo $this->Form->control('first_name',['class' =>'form-control']);
                         echo $this->Form->control('last_name',['class' =>'form-control']);
                         echo $this->Form->control('email',['class' =>'form-control']);
-                        //echo $this->Form->control('id_association');
-                        //echo $this->Form->control('id_role');
                     ?>
                 </fieldset>
-                <?= $this->Form->button(__('Submit'),['class' =>'btn btn-primary']) ?>
+                <div class="row col-12 text-center mt-4">
+                    <div class="col-6">
+                        <?= $this->Form->button(__('Submit'),['class' =>'btn btn-primary col-6'])?>
+                    </div>
+                    <div class="col-6">
+                        <?= $this->Html->link("Se connecter", ['action' => 'login']) ?>
+                    </div>
+                </div>
 
                 <?= $this->Form->end() ?>
             </div>
         </div>
     </div>
 
-<?= $this->Html->link("Se connecter", ['action' => 'login']) ?>
+
 </div>
