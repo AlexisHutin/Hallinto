@@ -10,15 +10,17 @@ use Authentication\PasswordHasher\DefaultPasswordHasher;
  * User Entity
  *
  * @property int $id
- * @property string|null $username
- * @property string|null $password
- * @property string|null $first_name
- * @property string|null $last_name
- * @property string|null $email
+ * @property string $first_name
+ * @property string $username
+ * @property string $last_name
+ * @property string $email
+ * @property string $password
+ * @property int|null $association_id
+ * @property int $role_id
  * @property \Cake\I18n\FrozenTime|null $created
- * @property \Cake\I18n\FrozenTime|null $modified
- * @property int $id_association
- * @property int $id_role
+ * @property \Cake\I18n\FrozenTime|null $updated
+ * @property string|null $image_name
+ * @property string|null $image_path
  */
 class User extends Entity
 {
@@ -32,15 +34,17 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'username' => true,
-        'password' => true,
         'first_name' => true,
+        'username' => true,
         'last_name' => true,
         'email' => true,
+        'password' => true,
+        'association_id' => true,
+        'role_id' => true,
         'created' => true,
-        'modified' => true,
-        'id_association' => true,
-        'id_role' => true,
+        'updated' => true,
+        'image_name' => true,
+        'image_path' => true,
     ];
 
     /**
@@ -52,7 +56,6 @@ class User extends Entity
         'password',
     ];
 
-    // Automatically hash passwords when they are changed.
     protected function _setPassword(string $password)
     {
         if (strlen($password) > 0) {
@@ -60,6 +63,3 @@ class User extends Entity
         }
     }
 }
-
-
-
