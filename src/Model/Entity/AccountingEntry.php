@@ -8,11 +8,13 @@ use Cake\ORM\Entity;
 /**
  * AccountingEntry Entity
  *
- * @property int $id_accounting_entries
- * @property string|null $amount
- * @property \Cake\I18n\FrozenTime|null $created
  * @property int $id
- * @property int $id_association
+ * @property int $association_id
+ * @property int $type_of_accounting_entry_id
+ * @property int|null $event_id
+ * @property string|null $amount
+ * @property \Cake\I18n\FrozenDate|null $created_on
+ * @property \Cake\I18n\FrozenDate|null $updated_on
  */
 class AccountingEntry extends Entity
 {
@@ -26,9 +28,11 @@ class AccountingEntry extends Entity
      * @var array
      */
     protected $_accessible = [
+        'association_id' => true,
+        'type_of_accounting_entry_id' => true,
+        'event_id' => true,
         'amount' => true,
-        'created' => true,
-        'id' => true,
-        'id_association' => true,
+        'created_on' => true,
+        'updated_on' => true,
     ];
 }

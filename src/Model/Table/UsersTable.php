@@ -54,10 +54,7 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
-        $validator
-            ->nonNegativeInteger('id')
-            ->allowEmptyString('id', null, 'create');
-
+        
         $validator
             ->scalar('username')
             ->maxLength('username', 50)
@@ -84,13 +81,12 @@ class UsersTable extends Table
 
         $validator
             ->integer('id_association')
-            ->requirePresence('id_association', 'create')
-            ->notEmptyString('id_association');
+            ->allowEmptyString('id_association');
 
         $validator
             ->integer('id_role')
-            ->requirePresence('id_role', 'create')
-            ->notEmptyString('id_role');
+            // ->requirePresence('id_role', 'create')
+            ->allowEmptyString('id_role');
 
         return $validator;
     }

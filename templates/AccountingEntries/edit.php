@@ -22,9 +22,13 @@
             <fieldset>
                 <legend><?= __('Edit Accounting Entry') ?></legend>
                 <?php
-                    echo $this->Form->control('amount');
                     echo $this->Form->control('id');
-                    echo $this->Form->control('id_association');
+                    echo $this->Form->control('association_id');
+                    echo $this->Form->control('type_of_accounting_entry_id');
+                    echo $this->Form->control('event_id');
+                    echo $this->Form->control('amount');
+                    echo $this->Form->control('created_on', ['empty' => true]);
+                    echo $this->Form->control('updated_on', ['empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

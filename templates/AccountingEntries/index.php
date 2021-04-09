@@ -11,22 +11,26 @@
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id_accounting_entries') ?></th>
-                    <th><?= $this->Paginator->sort('amount') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('id_association') ?></th>
+                    <th><?= $this->Paginator->sort('association_id') ?></th>
+                    <th><?= $this->Paginator->sort('type_of_accounting_entry_id') ?></th>
+                    <th><?= $this->Paginator->sort('event_id') ?></th>
+                    <th><?= $this->Paginator->sort('amount') ?></th>
+                    <th><?= $this->Paginator->sort('created_on') ?></th>
+                    <th><?= $this->Paginator->sort('updated_on') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($accountingEntries as $accountingEntry): ?>
                 <tr>
-                    <td><?= $this->Number->format($accountingEntry->id_accounting_entries) ?></td>
-                    <td><?= $this->Number->format($accountingEntry->amount) ?></td>
-                    <td><?= h($accountingEntry->created) ?></td>
                     <td><?= $this->Number->format($accountingEntry->id) ?></td>
-                    <td><?= $this->Number->format($accountingEntry->id_association) ?></td>
+                    <td><?= $this->Number->format($accountingEntry->association_id) ?></td>
+                    <td><?= $this->Number->format($accountingEntry->type_of_accounting_entry_id) ?></td>
+                    <td><?= $this->Number->format($accountingEntry->event_id) ?></td>
+                    <td><?= $this->Number->format($accountingEntry->amount) ?></td>
+                    <td><?= h($accountingEntry->created_on) ?></td>
+                    <td><?= h($accountingEntry->updated_on) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $accountingEntry->id_accounting_entries]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accountingEntry->id_accounting_entries]) ?>
