@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use PhpParser\Node\Stmt\TryCatch;
+
 /**
  * Users Controller
  *
@@ -14,6 +16,7 @@ class UsersController extends AppController
     public function beforeFilter(\Cake\Event\EventInterface $event)
     {
         parent::beforeFilter($event);
+        $this->Authentication->addUnauthenticatedActions(['login', 'add']);
 
         //$this->Authentication->allowUnauthenticated(['login']);
     }
@@ -55,6 +58,9 @@ class UsersController extends AppController
         $user = $this->Users->newEmptyEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            // dd($this->request->getData(), $user);
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 

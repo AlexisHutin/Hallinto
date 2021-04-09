@@ -55,8 +55,9 @@ class User extends Entity
     // Automatically hash passwords when they are changed.
     protected function _setPassword(string $password)
     {
-        $hasher = new DefaultPasswordHasher();
-        return $hasher->hash($password);
+        if (strlen($password) > 0) {
+            return (new DefaultPasswordHasher())->hash($password);
+        }
     }
 }
 

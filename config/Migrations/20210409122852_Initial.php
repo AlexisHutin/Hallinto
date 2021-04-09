@@ -14,12 +14,21 @@ class Initial extends AbstractMigration
      */
     public function up()
     {
-        $this->table('accounting_entries', ['id' => false, 'primary_key' => ['id_accounting_entries']])
-            ->addColumn('id_accounting_entries', 'integer', [
-                'autoIncrement' => true,
+        $this->table('accounting_entries')
+            ->addColumn('association_id', 'integer', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
+            ])
+            ->addColumn('accounting_entry_type_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('event_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
             ])
             ->addColumn('amount', 'decimal', [
                 'default' => null,
@@ -27,82 +36,131 @@ class Initial extends AbstractMigration
                 'precision' => 15,
                 'scale' => 2,
             ])
+            ->addColumn('reason', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
             ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('id', 'integer', [
+            ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('id_association', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
             ->addIndex(
                 [
-                    'id',
+                    'accounting_entry_type_id',
                 ]
             )
             ->addIndex(
                 [
-                    'id_association',
+                    'association_id',
                 ]
             )
             ->create();
 
-        $this->table('adds_accounting_entry', ['id' => false, 'primary_key' => ['id_event', 'id_accounting_entries']])
-            ->addColumn('id_event', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('id_accounting_entries', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addIndex(
-                [
-                    'id_event',
-                ]
-            )
-            ->addIndex(
-                [
-                    'id_accounting_entries',
-                ]
-            )
-            ->create();
-
-        $this->table('associations', ['id' => false, 'primary_key' => ['id_association']])
-            ->addColumn('id_association', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('name', 'string', [
+        $this->table('accounting_entry_type')
+            ->addColumn('type_name', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => true,
+            ])
+            ->create();
+
+        $this->table('associations')
+            ->addColumn('name', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('association_type', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('adresse', 'text', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('email', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('RNA_number', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
             ])
             ->addColumn('plan_type', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => true,
             ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('updated', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('image_name', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('image_path', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
             ->create();
 
-        $this->table('events', ['id' => false, 'primary_key' => ['id_event']])
-            ->addColumn('id_event', 'integer', [
-                'autoIncrement' => true,
+        $this->table('associations_events')
+            ->addColumn('association_id', 'integer', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
             ])
+            ->addColumn('event_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addIndex(
+                [
+                    'event_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'association_id',
+                ]
+            )
+            ->create();
+
+        $this->table('event_type')
+            ->addColumn('name', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('icon', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->create();
+
+        $this->table('events')
             ->addColumn('event_name', 'string', [
                 'default' => null,
                 'limit' => 255,
@@ -133,72 +191,50 @@ class Initial extends AbstractMigration
                 'limit' => 255,
                 'null' => true,
             ])
-            ->create();
-
-        $this->table('has_type_of_event', ['id' => false, 'primary_key' => ['id_event', 'id']])
-            ->addColumn('id_event', 'integer', [
+            ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
             ])
-            ->addColumn('id', 'integer', [
+            ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
+                'null' => true,
+            ])
+            ->addColumn('event_type_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
             ])
             ->addIndex(
                 [
-                    'id_event',
-                ]
-            )
-            ->addIndex(
-                [
-                    'id',
+                    'event_type_id',
                 ]
             )
             ->create();
 
-        $this->table('holds_events', ['id' => false, 'primary_key' => ['id_association', 'id_event']])
-            ->addColumn('id_association', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('id_event', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addIndex(
-                [
-                    'id_association',
-                ]
-            )
-            ->addIndex(
-                [
-                    'id_event',
-                ]
-            )
-            ->create();
-
-        $this->table('members', ['id' => false, 'primary_key' => ['id_members']])
-            ->addColumn('id_members', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
+        $this->table('members')
             ->addColumn('first_name', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => true,
+                'null' => false,
             ])
             ->addColumn('last_name', 'string', [
                 'default' => null,
                 'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('birth_date', 'date', [
+                'default' => null,
+                'limit' => null,
                 'null' => true,
             ])
             ->addColumn('email', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('phone_number', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => true,
@@ -208,182 +244,202 @@ class Initial extends AbstractMigration
                 'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('id_association', 'integer', [
+            ->addColumn('association_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('inscription_date', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
             ])
             ->addIndex(
                 [
-                    'id_association',
+                    'association_id',
                 ]
             )
             ->create();
 
-        $this->table('references_event', ['id' => false, 'primary_key' => ['id_event', 'id_statistiques']])
-            ->addColumn('id_event', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('id_statistiques', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addIndex(
-                [
-                    'id_event',
-                ]
-            )
-            ->addIndex(
-                [
-                    'id_statistiques',
-                ]
-            )
-            ->create();
-
-        $this->table('roles', ['id' => false, 'primary_key' => ['id_role']])
-            ->addColumn('id_role', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
+        $this->table('roles')
             ->addColumn('role', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => true,
             ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
+            ->addColumn('updated', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => true,
+            ])
             ->create();
 
-        $this->table('stat_type', ['id' => false, 'primary_key' => ['id_stat_type']])
-            ->addColumn('id_stat_type', 'integer', [
-                'autoIncrement' => true,
+        $this->table('statistics')
+            ->addColumn('association_id', 'integer', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
             ])
+            ->addColumn('statistics_type_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('data', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('updated', 'datetime', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addIndex(
+                [
+                    'statistics_type_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'association_id',
+                ]
+            )
+            ->create();
+
+        $this->table('statistics_event')
+            ->addColumn('event_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('statistics_id', 'integer', [
+                'default' => null,
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addIndex(
+                [
+                    'statistics_id',
+                ]
+            )
+            ->addIndex(
+                [
+                    'event_id',
+                ]
+            )
+            ->create();
+
+        $this->table('statistics_type')
             ->addColumn('type', 'string', [
                 'default' => null,
                 'limit' => 255,
                 'null' => true,
             ])
-            ->create();
-
-        $this->table('statistiques', ['id' => false, 'primary_key' => ['id_statistiques']])
-            ->addColumn('id_statistiques', 'integer', [
-                'autoIncrement' => true,
+            ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('id_association', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addColumn('id_stat_type', 'integer', [
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
-            ->addIndex(
-                [
-                    'id_association',
-                ]
-            )
-            ->addIndex(
-                [
-                    'id_stat_type',
-                ]
-            )
-            ->create();
-
-        $this->table('type_of_accounting_entry')
-            ->addColumn('type_name', 'string', [
-                'default' => null,
-                'limit' => 255,
                 'null' => true,
             ])
-            ->addColumn('icon', 'string', [
+            ->addColumn('updated', 'datetime', [
                 'default' => null,
-                'limit' => 255,
+                'limit' => null,
                 'null' => true,
             ])
             ->create();
 
-        $this->table('type_of_event')
-            ->addColumn('type_name', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => true,
-            ])
-            ->addColumn('icon', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => true,
-            ])
-            ->create();
-
-        $this->table('users', ['id' => false, 'primary_key' => ['id_user']])
-            ->addColumn('id_user', 'integer', [
-                'autoIncrement' => true,
-                'default' => null,
-                'limit' => null,
-                'null' => false,
-            ])
+        $this->table('users')
             ->addColumn('first_name', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => true,
+                'null' => false,
             ])
             ->addColumn('username', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => true,
+                'null' => false,
             ])
             ->addColumn('last_name', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => true,
+                'null' => false,
             ])
             ->addColumn('email', 'string', [
                 'default' => null,
                 'limit' => 255,
-                'null' => true,
+                'null' => false,
             ])
             ->addColumn('password', 'string', [
                 'default' => null,
                 'limit' => 255,
+                'null' => false,
+            ])
+            ->addColumn('association_id', 'integer', [
+                'default' => null,
+                'limit' => null,
                 'null' => true,
             ])
-            ->addColumn('id_association', 'integer', [
+            ->addColumn('role_id', 'integer', [
+                'default' => '1',
+                'limit' => null,
+                'null' => false,
+            ])
+            ->addColumn('created', 'datetime', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
             ])
-            ->addColumn('id_role', 'integer', [
+            ->addColumn('updated', 'datetime', [
                 'default' => null,
                 'limit' => null,
                 'null' => false,
+            ])
+            ->addColumn('image_name', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
+            ])
+            ->addColumn('image_path', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => true,
             ])
             ->addIndex(
                 [
-                    'id_association',
+                    'role_id',
                 ]
             )
             ->addIndex(
                 [
-                    'id_role',
+                    'association_id',
                 ]
             )
             ->create();
 
         $this->table('accounting_entries')
             ->addForeignKey(
-                'id',
-                'type_of_accounting_entry',
+                'accounting_entry_type_id',
+                'accounting_entry_type',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -391,50 +447,8 @@ class Initial extends AbstractMigration
                 ]
             )
             ->addForeignKey(
-                'id_association',
+                'association_id',
                 'associations',
-                'id_association',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->update();
-
-        $this->table('adds_accounting_entry')
-            ->addForeignKey(
-                'id_event',
-                'events',
-                'id_event',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->addForeignKey(
-                'id_accounting_entries',
-                'accounting_entries',
-                'id_accounting_entries',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->update();
-
-        $this->table('has_type_of_event')
-            ->addForeignKey(
-                'id_event',
-                'events',
-                'id_event',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->addForeignKey(
-                'id',
-                'type_of_event',
                 'id',
                 [
                     'update' => 'RESTRICT',
@@ -443,20 +457,32 @@ class Initial extends AbstractMigration
             )
             ->update();
 
-        $this->table('holds_events')
+        $this->table('associations_events')
             ->addForeignKey(
-                'id_association',
+                'event_id',
+                'events',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT',
+                ]
+            )
+            ->addForeignKey(
+                'association_id',
                 'associations',
-                'id_association',
+                'id',
                 [
                     'update' => 'RESTRICT',
                     'delete' => 'RESTRICT',
                 ]
             )
+            ->update();
+
+        $this->table('events')
             ->addForeignKey(
-                'id_event',
-                'events',
-                'id_event',
+                'event_type_id',
+                'event_type',
+                'id',
                 [
                     'update' => 'RESTRICT',
                     'delete' => 'RESTRICT',
@@ -466,9 +492,9 @@ class Initial extends AbstractMigration
 
         $this->table('members')
             ->addForeignKey(
-                'id_association',
+                'association_id',
                 'associations',
-                'id_association',
+                'id',
                 [
                     'update' => 'RESTRICT',
                     'delete' => 'RESTRICT',
@@ -476,41 +502,41 @@ class Initial extends AbstractMigration
             )
             ->update();
 
-        $this->table('references_event')
+        $this->table('statistics')
             ->addForeignKey(
-                'id_event',
+                'statistics_type_id',
+                'statistics_type',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT',
+                ]
+            )
+            ->addForeignKey(
+                'association_id',
+                'associations',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT',
+                ]
+            )
+            ->update();
+
+        $this->table('statistics_event')
+            ->addForeignKey(
+                'statistics_id',
+                'statistics',
+                'id',
+                [
+                    'update' => 'RESTRICT',
+                    'delete' => 'RESTRICT',
+                ]
+            )
+            ->addForeignKey(
+                'event_id',
                 'events',
-                'id_event',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->addForeignKey(
-                'id_statistiques',
-                'statistiques',
-                'id_statistiques',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->update();
-
-        $this->table('statistiques')
-            ->addForeignKey(
-                'id_association',
-                'associations',
-                'id_association',
-                [
-                    'update' => 'RESTRICT',
-                    'delete' => 'RESTRICT',
-                ]
-            )
-            ->addForeignKey(
-                'id_stat_type',
-                'stat_type',
-                'id_stat_type',
+                'id',
                 [
                     'update' => 'RESTRICT',
                     'delete' => 'RESTRICT',
@@ -520,18 +546,18 @@ class Initial extends AbstractMigration
 
         $this->table('users')
             ->addForeignKey(
-                'id_association',
-                'associations',
-                'id_association',
+                'role_id',
+                'roles',
+                'id',
                 [
                     'update' => 'RESTRICT',
                     'delete' => 'RESTRICT',
                 ]
             )
             ->addForeignKey(
-                'id_role',
-                'roles',
-                'id_role',
+                'association_id',
+                'associations',
+                'id',
                 [
                     'update' => 'RESTRICT',
                     'delete' => 'RESTRICT',
@@ -551,78 +577,65 @@ class Initial extends AbstractMigration
     {
         $this->table('accounting_entries')
             ->dropForeignKey(
-                'id'
+                'accounting_entry_type_id'
             )
             ->dropForeignKey(
-                'id_association'
+                'association_id'
             )->save();
 
-        $this->table('adds_accounting_entry')
+        $this->table('associations_events')
             ->dropForeignKey(
-                'id_event'
+                'event_id'
             )
             ->dropForeignKey(
-                'id_accounting_entries'
+                'association_id'
             )->save();
 
-        $this->table('has_type_of_event')
+        $this->table('events')
             ->dropForeignKey(
-                'id_event'
-            )
-            ->dropForeignKey(
-                'id'
-            )->save();
-
-        $this->table('holds_events')
-            ->dropForeignKey(
-                'id_association'
-            )
-            ->dropForeignKey(
-                'id_event'
+                'event_type_id'
             )->save();
 
         $this->table('members')
             ->dropForeignKey(
-                'id_association'
+                'association_id'
             )->save();
 
-        $this->table('references_event')
+        $this->table('statistics')
             ->dropForeignKey(
-                'id_event'
+                'statistics_type_id'
             )
             ->dropForeignKey(
-                'id_statistiques'
+                'association_id'
             )->save();
 
-        $this->table('statistiques')
+        $this->table('statistics_event')
             ->dropForeignKey(
-                'id_association'
+                'statistics_id'
             )
             ->dropForeignKey(
-                'id_stat_type'
+                'event_id'
             )->save();
 
         $this->table('users')
             ->dropForeignKey(
-                'id_association'
+                'role_id'
             )
             ->dropForeignKey(
-                'id_role'
+                'association_id'
             )->save();
 
         $this->table('accounting_entries')->drop()->save();
-        $this->table('adds_accounting_entry')->drop()->save();
+        $this->table('accounting_entry_type')->drop()->save();
         $this->table('associations')->drop()->save();
+        $this->table('associations_events')->drop()->save();
+        $this->table('event_type')->drop()->save();
         $this->table('events')->drop()->save();
-        $this->table('has_type_of_event')->drop()->save();
-        $this->table('holds_events')->drop()->save();
         $this->table('members')->drop()->save();
-        $this->table('references_event')->drop()->save();
         $this->table('roles')->drop()->save();
-        $this->table('stat_type')->drop()->save();
-        $this->table('statistiques')->drop()->save();
-        $this->table('type_of_accounting_entry')->drop()->save();
-        $this->table('type_of_event')->drop()->save();
+        $this->table('statistics')->drop()->save();
+        $this->table('statistics_event')->drop()->save();
+        $this->table('statistics_type')->drop()->save();
         $this->table('users')->drop()->save();
     }
 }
