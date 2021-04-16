@@ -18,7 +18,8 @@ class EventsController extends AppController
      */
     public function index()
     {
-        $events = $this->Events->find();
+        $events = $this->Events->find()
+        ->contain('EventTypes');
 
         $this->set(compact('events'));
     }
