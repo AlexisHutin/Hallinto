@@ -30,7 +30,7 @@ class MembersController extends AppController
                 ->where([
                     'association_id' => $current_user->association_id,
                 ]);
-        } 
+        }
         $this->set(compact('members'));
     }
 
@@ -114,5 +114,43 @@ class MembersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+    public function importMembers()
+    {
+        $csvFile = fopen(ROOT . DS . 'file' . DS . 'csv' . DS . 'members' . DS . 'user.csv', 'r');
+
+        while (($row = fgetcsv($csvFile, 0, ",")) !== FALSE) {
+            dd($row);
+        }
+        
+    }
+
+    public function exportMembers()
+    {
+        $this->response = $this->response->withDownload('user.csv');
+        $members = $this->Members->find();
+
+        $header = [
+            'id',
+            'first_name',
+            'last_name',
+            'birth_date',
+            'email',
+            'phone_number',
+            'contribution_is_paid',
+            'association_id',
+            'inscription_date',
+            'created',
+            'updated',
+        ];
+
+        $this->set(compact('members'));
+        $this->viewBuilder()
+        ->setClassName('CsvView.Csv')
+        ->setOptions([
+            'serialize' => 'members',
+            'header' => $header,
+        ]);
     }
 }
