@@ -72,7 +72,7 @@ class PagesController extends AppController
         $query2->find('all');
         $query2 = $query2->toArray();
         $this->set(compact('query2'));
-        
+
         $total=0;
         foreach ($query2 as $amount) {
             if($amount['accounting_entry_type_id'] == 2){
@@ -84,18 +84,43 @@ class PagesController extends AppController
         }
         $this->set(compact('total'));
 
-        $array = array();
+        $arrayAmounts = array();
         foreach ($query2 as $amount) {
             if($amount['accounting_entry_type_id'] == 2){
-                array_push($array, '-'.$amount['amount']); 
+                array_push($arrayAmounts , '-'.$amount['amount']); 
             }elseif($amount['accounting_entry_type_id'] == 1){
-                array_push($array, '+'.$amount['amount']); 
+                array_push($arrayAmounts , '+'.$amount['amount']); 
             }
              
         }
         
-        $amounts = json_encode($array, JSON_NUMERIC_CHECK);
+        $amounts = json_encode($arrayAmounts, JSON_NUMERIC_CHECK);
         $this->set(compact('amounts'));
+
+
+        $query3 = TableRegistry::getTableLocator()->get('AccountingEntries')->find();
+        $query3->select([
+                'AccountingEntries.id', 
+                'AccountingEntries.association_id',
+                'AccountingEntries.accounting_entry_type_id',
+                'AccountingEntries.amount',
+                'AccountingEntries.reason',
+                'AccountingEntries.created',
+                ])
+                ->limit(7);
+        
+        $query3->orderDesc('AccountingEntries.created');
+
+        $query3 = $query3->toArray();
+        $this->set(compact('query3'));
+
+        //SELECT * FROM associations_events LEFT JOIN events ON associations_events.event_id = events.id WHERE association_id = 1 LIMIT 2
+        $query4 = TableRegistry::getTableLocator()->get('events')->find()
+                ->limit(2)
+                ->orderDesc('events.start_date');
+
+        $query4 = $query4->toArray();
+        $this->set(compact('query4'));
 
         try {
             return $this->render(implode('/', $path));
