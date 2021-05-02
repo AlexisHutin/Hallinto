@@ -15,35 +15,26 @@ selectedRowValues = function(transaction,results)
      }
 };
 
-var ctx = document.getElementById('myChart').getContext('2d');
+var ctx = document.getElementById('dashboardChart').getContext('2d');
 
-var amountData = [];
-amountData = document.getElementById('myChart').dataset.amounts;
+var data = [];
+data = document.getElementById('dashboardChart').dataset.amounts;
 
-var count = 0;
-for(var i = 0; i < amountData.length; ++i){
-    if(amountData[i] == 2)
-        count++;
-}
+console.log(data);
 
-console.log(amountData);
-console.log(count);
+const labels = [1,2,3,4,5,6,7];
 
-
-var gradientStroke = ctx.createLinearGradient(0, 100, 0, 500);
-gradientStroke.addColorStop(0, "#A896CF");
-gradientStroke.addColorStop(1, "#E2DCEF");
-
-var myChart = new Chart(ctx, {
+var dashboardChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels:amoutData.length(),
+        labels: labels,
         datasets: [{
-            data: amountData,
-            backgroundColor: gradientStroke,
-            borderWidth: 1,
-            pointRadius: 4,
-            borderWidth: 0,
+            data: [50,-32.4,-25,-64.02,15,63.32,147.01,82.01],
+            backgroundColor: '#A896CF',
+            //pointRadius: 0,
+            borderWidth: 2,
+            borderColor: '#8B73BF',
+            tension: 0.3
 
         }]
     },
@@ -53,10 +44,12 @@ var myChart = new Chart(ctx, {
         },
         scales: {
             yAxes: [{
-                display:true
+                display:false,
+                min: -100,
+                max: 100
             }],
             xAxes: [{
-                display:true
+                display:false
             }]
         },
          maintainAspectRatio: false,
