@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AccountingEntriesTable;
+use App\Model\Table\MembersTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AccountingEntriesTable Test Case
+ * App\Model\Table\MembersTable Test Case
  */
-class AccountingEntriesTableTest extends TestCase
+class MembersTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AccountingEntriesTable
+     * @var \App\Model\Table\MembersTable
      */
-    protected $AccountingEntries;
+    protected $Members;
 
     /**
      * Fixtures
@@ -24,10 +24,8 @@ class AccountingEntriesTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.AccountingEntries',
+        'app.Members',
         'app.Associations',
-        'app.TypeOfAccountingEntries',
-        'app.Events',
     ];
 
     /**
@@ -38,8 +36,8 @@ class AccountingEntriesTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('AccountingEntries') ? [] : ['className' => AccountingEntriesTable::class];
-        $this->AccountingEntries = $this->getTableLocator()->get('AccountingEntries', $config);
+        $config = $this->getTableLocator()->exists('Members') ? [] : ['className' => MembersTable::class];
+        $this->Members = $this->getTableLocator()->get('Members', $config);
     }
 
     /**
@@ -49,7 +47,7 @@ class AccountingEntriesTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->AccountingEntries);
+        unset($this->Members);
 
         parent::tearDown();
     }

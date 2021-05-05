@@ -6,22 +6,23 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * AccountingEntry Entity
+ * Member Entity
  *
  * @property int $id
+ * @property string $first_name
+ * @property string $last_name
+ * @property \Cake\I18n\FrozenDate|null $birth_date
+ * @property string|null $email
+ * @property string|null $phone_number
+ * @property bool|null $contribution_is_paid
  * @property int $association_id
- * @property int $accounting_entry_type_id
- * @property int|null $event_id
- * @property string|null $amount
- * @property string|null $reason
+ * @property int|null $inscription_date
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $updated
  *
  * @property \App\Model\Entity\Association $association
- * @property \App\Model\Entity\TypeOfAccountingEntry $type_of_accounting_entry
- * @property \App\Model\Entity\Event $event
  */
-class AccountingEntry extends Entity
+class Member extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -33,15 +34,16 @@ class AccountingEntry extends Entity
      * @var array
      */
     protected $_accessible = [
+        'first_name' => true,
+        'last_name' => true,
+        'birth_date' => true,
+        'email' => true,
+        'phone_number' => true,
+        'contribution_is_paid' => true,
         'association_id' => true,
-        'accounting_entry_type_id' => true,
-        'event_id' => true,
-        'amount' => true,
-        'reason' => true,
+        'inscription_date' => true,
         'created' => true,
         'updated' => true,
         'association' => true,
-        'type_of_accounting_entry' => true,
-        'event' => true,
     ];
 }

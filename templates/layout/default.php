@@ -29,29 +29,38 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,700" rel="stylesheet">
 
-    <!-- <?= $this->Html->css(['normalize.min', 'milligram.min', 'cake']) ?> -->
+    <script src="" integrity="sha512-d9xgZrVZpmmQlfonhQUvTR7lMPtO7NkZMkA0ABN3PHCbKA5nqylQ/yWlFAyY6hYgdF1Qh6nYiuADWwKB4C2WSw==" crossorigin="anonymous"></script>
+    <script src="" integrity="sha512-zO8oeHCxetPn1Hd9PdDleg5Tw1bAaP0YmNvPY8CwcRyUk7d7/+nyElmFrB6f7vg4f7Fv4sui1mcep8RIEShczg==" crossorigin="anonymous"></script>
+    <script src="" integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA==" crossorigin="anonymous"></script>
+    <script src="" integrity="sha512-hZf9Qhp3rlDJBvAKvmiG+goaaKRZA6LKUO35oK6EsM0/kjPK32Yw7URqrq3Q+Nvbbt8Usss+IekL7CRn83dYmw==" crossorigin="anonymous"></script>
+
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
     <?= $this->Html->css([
-        'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css'
+        'https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css',
+        'stylesheet',
+        'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.css',
+        'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.css',
+        '/webroot/fontello/css/fontello.css',
+    ]) ?>
 
+    <?= $this->Html->script([
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js',
+            'https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js'
     ]) ?>
 </head>
 
 <body class="h-100">
     <div class="container-fluid h-100">
-        <div class="row h-100">
-                <?= $this->Element('nav') ?>
-            <div class="col-10 p-0">
-                <div>
+        
                     <?= $this->Flash->render() ?>
                     <?= $this->fetch('content') ?>
-                </div>
-            </div>
+                
         </div>
     </div>
     <!-- <main class="main"> -->
