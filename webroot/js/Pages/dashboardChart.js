@@ -31,7 +31,7 @@ var dashboardChart = new Chart(ctx, {
         datasets: [{
             data: [50,-32.4,-25,-64.02,15,63.32,147.01,82.01],
             backgroundColor: '#A896CF',
-            //pointRadius: 0,
+            pointRadius: 0,
             borderWidth: 2,
             borderColor: '#8B73BF',
             tension: 0.3
