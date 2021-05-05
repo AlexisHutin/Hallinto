@@ -57,14 +57,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 <body class="h-100">
     <div class="container-fluid h-100">
-        <div class="row h-100">
-                <?= $this->Element('nav') ?>
-            <div class="col-10 p-0">
-                <div>
+        
                     <?= $this->Flash->render() ?>
                     <?= $this->fetch('content') ?>
-                </div>
-            </div>
+                
         </div>
     </div>
     <!-- <main class="main"> -->
