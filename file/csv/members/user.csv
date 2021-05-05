@@ -1,0 +1,5 @@
+id,first_name,last_name,birth_date,email,phone_number,contribution_is_paid,association_id,inscription_date,created,updated
+1,Josette,Durant,2/28/02,josette@durant.bzh,0101010101,1,1,2/1/21,,
+2,Josette,Durant,2/28/02,josette@durant.bzh,0101010101,1,1,2/1/21,,
+3,Josette,Durant,2/28/02,josette@durant.bzh,0101010101,,1,2/1/21,,
+4,Josette,Durant,2/28/02,josette@durant.bzh,0101010101,1,1,2/1/21,,

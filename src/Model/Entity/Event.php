@@ -8,13 +8,16 @@ use Cake\ORM\Entity;
 /**
  * Event Entity
  *
- * @property int $id_event
+ * @property int $id
  * @property string|null $event_name
  * @property \Cake\I18n\FrozenDate|null $start_date
  * @property string|null $end_date
  * @property \Cake\I18n\FrozenTime|null $start_time
  * @property \Cake\I18n\FrozenTime|null $end_time
  * @property string|null $location
+ * @property \Cake\I18n\FrozenTime|null $created
+ * @property \Cake\I18n\FrozenTime|null $updated
+ * @property int|null $event_type_id
  */
 class Event extends Entity
 {
@@ -34,5 +37,8 @@ class Event extends Entity
         'start_time' => true,
         'end_time' => true,
         'location' => true,
+        'created' => true,
+        'updated' => true,
+        'event_type_id' => true,
     ];
 }

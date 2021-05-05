@@ -24,6 +24,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class EventsTable extends Table
 {
@@ -40,6 +42,23 @@ class EventsTable extends Table
         $this->setTable('events');
         $this->setDisplayField('id_event');
         $this->setPrimaryKey('id_event');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('EventTypes', [
+            'foreignKey' => 'event_type_id',
+        ]);
+        $this->hasMany('AccountingEntries', [
+            'foreignKey' => 'event_id',
+        ]);
+        $this->hasMany('StatisticsEvent', [
+            'foreignKey' => 'event_id',
+        ]);
+        $this->belongsToMany('Associations', [
+            'foreignKey' => 'event_id',
+            'targetForeignKey' => 'association_id',
+            'joinTable' => 'associations_events',
+        ]);
     }
 
     /**
@@ -51,8 +70,8 @@ class EventsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id_event')
-            ->allowEmptyString('id_event', null, 'create');
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
 
         $validator
             ->scalar('event_name')
@@ -82,5 +101,19 @@ class EventsTable extends Table
             ->allowEmptyString('location');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['event_type_id'], 'EventTypes'), ['errorField' => 'event_type_id']);
+
+        return $rules;
     }
 }
