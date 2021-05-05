@@ -11,6 +11,9 @@ use Cake\Validation\Validator;
 /**
  * AccountingEntries Model
  *
+ * @property \App\Model\Table\AssociationsTable&\Cake\ORM\Association\BelongsTo $Associations
+ * @property \App\Model\Table\EventsTable&\Cake\ORM\Association\BelongsTo $Events
+ *
  * @method \App\Model\Entity\AccountingEntry newEmptyEntity()
  * @method \App\Model\Entity\AccountingEntry newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\AccountingEntry[] newEntities(array $data, array $options = [])
@@ -24,6 +27,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\AccountingEntry[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\AccountingEntry[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\AccountingEntry[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class AccountingEntriesTable extends Table
 {
@@ -41,12 +46,14 @@ class AccountingEntriesTable extends Table
         $this->setDisplayField('id_accounting_entries');
         $this->setPrimaryKey('id_accounting_entries');
 
+        $this->addBehavior('Timestamp');
+
         $this->belongsTo('Associations', [
             'foreignKey' => 'association_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsTo('TypeOfAccountingEntries', [
-            'foreignKey' => 'type_of_accounting_entry_id',
+        $this->belongsTo('AccountingEntryType', [
+            'foreignKey' => 'accounting_entry_type_id',
             'joinType' => 'INNER',
         ]);
         $this->belongsTo('Events', [
@@ -71,12 +78,8 @@ class AccountingEntriesTable extends Table
             ->allowEmptyString('amount');
 
         $validator
-            ->date('created_on')
-            ->allowEmptyDate('created_on');
-
-        $validator
-            ->date('updated_on')
-            ->allowEmptyDate('updated_on');
+            ->scalar('reason')
+            ->allowEmptyString('reason');
 
         return $validator;
     }
@@ -91,7 +94,7 @@ class AccountingEntriesTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['association_id'], 'Associations'), ['errorField' => 'association_id']);
-        $rules->add($rules->existsIn(['type_of_accounting_entry_id'], 'TypeOfAccountingEntries'), ['errorField' => 'type_of_accounting_entry_id']);
+        $rules->add($rules->existsIn(['accounting_entry_type_id'], 'AccountingEntryType'), ['errorField' => 'accounting_entry_type_id']);
         $rules->add($rules->existsIn(['event_id'], 'Events'), ['errorField' => 'event_id']);
 
         return $rules;

@@ -13,6 +13,7 @@
 .icon-search:before { content: '\e80b'; } /* '' */
 .icon-settings:before { content: '\e80c'; } /* '' */
 .icon-star:before { content: '\e80d'; } /* '' */
+.icon-circle-plus:before { content: '\e80e'; } /* '' */
 .icon-arrow-left-circle:before { content: '\e80f'; } /* '' */
 .icon-bar-chart:before { content: '\e810'; } /* '' */
 .icon-basketball:before { content: '\e811'; } /* '' */
@@ -20,3 +21,4 @@
 .icon-calendar:before { content: '\e813'; } /* '' */
 .icon-clock:before { content: '\e814'; } /* '' */
 .icon-users:before { content: '\e815'; } /* '' */
+.icon-download:before { content: '\e816'; } /* '' */

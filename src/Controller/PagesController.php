@@ -21,6 +21,7 @@ use Cake\Http\Exception\ForbiddenException;
 use Cake\Http\Exception\NotFoundException;
 use Cake\Http\Response;
 use Cake\View\Exception\MissingTemplateException;
+use Cake\ORM\TableRegistry;
 
 /**
  * Static content controller
@@ -60,6 +61,66 @@ class PagesController extends AppController
             $subpage = $path[1];
         }
         $this->set(compact('page', 'subpage'));
+ 
+        $query1 = TableRegistry::getTableLocator()->get('Members')->find();
+        $query1->select(['count' => $query1->func()->count('*')]);
+        $query1 = $query1->toArray();
+
+        $this->set(compact('query1'));
+
+        $query2 = TableRegistry::getTableLocator()->get('AccountingEntries')->find();
+        $query2->find('all');
+        $query2 = $query2->toArray();
+        $this->set(compact('query2'));
+
+        $total=0;
+        foreach ($query2 as $amount) {
+            if($amount['accounting_entry_type_id'] == 2){
+                $total = $total - $amount['amount'];
+            }elseif($amount['accounting_entry_type_id'] == 1){
+                $total = $total + $amount['amount'];
+            }
+            
+        }
+        $this->set(compact('total'));
+
+        $arrayAmounts = array();
+        foreach ($query2 as $amount) {
+            if($amount['accounting_entry_type_id'] == 2){
+                array_push($arrayAmounts , '-'.$amount['amount']); 
+            }elseif($amount['accounting_entry_type_id'] == 1){
+                array_push($arrayAmounts , '+'.$amount['amount']); 
+            }
+             
+        }
+        
+        $amounts = json_encode($arrayAmounts, JSON_NUMERIC_CHECK);
+        $this->set(compact('amounts'));
+
+
+        $query3 = TableRegistry::getTableLocator()->get('AccountingEntries')->find();
+        $query3->select([
+                'AccountingEntries.id', 
+                'AccountingEntries.association_id',
+                'AccountingEntries.accounting_entry_type_id',
+                'AccountingEntries.amount',
+                'AccountingEntries.reason',
+                'AccountingEntries.created',
+                ])
+                ->limit(7);
+        
+        $query3->orderDesc('AccountingEntries.created');
+
+        $query3 = $query3->toArray();
+        $this->set(compact('query3'));
+
+        //SELECT * FROM associations_events LEFT JOIN events ON associations_events.event_id = events.id WHERE association_id = 1 LIMIT 2
+        $query4 = TableRegistry::getTableLocator()->get('events')->find()
+                ->limit(2)
+                ->orderDesc('events.start_date');
+
+        $query4 = $query4->toArray();
+        $this->set(compact('query4'));
 
         try {
             return $this->render(implode('/', $path));
@@ -69,5 +130,7 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+
     }
+
 }
