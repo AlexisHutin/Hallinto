@@ -51,7 +51,7 @@ class AccountingEntriesHelper extends Helper
         switch($entry->accounting_entry_type_id){
 
             case 1:
-                $type="Entré";
+                $type="Entrée";
                 break;
             case 2:
                 $type="Sortie";
