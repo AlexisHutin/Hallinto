@@ -44,6 +44,14 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Associations', [
+            'foreignKey' => 'association_id',
+        ]);
+        $this->belongsTo('Roles', [
+            'foreignKey' => 'role_id',
+            'joinType' => 'INNER',
+        ]);
     }
 
     /**
@@ -54,39 +62,48 @@ class UsersTable extends Table
      */
     public function validationDefault(Validator $validator): Validator
     {
-        
         $validator
-            ->scalar('username')
-            ->maxLength('username', 50)
-            ->allowEmptyString('username');
-
-        $validator
-            ->scalar('password')
-            ->maxLength('password', 255)
-            ->allowEmptyString('password');
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
 
         $validator
             ->scalar('first_name')
             ->maxLength('first_name', 255)
-            ->allowEmptyString('first_name');
+            ->requirePresence('first_name', 'create')
+            ->notEmptyString('first_name');
+
+        $validator
+            ->scalar('username')
+            ->maxLength('username', 255)
+            ->requirePresence('username', 'create')
+            ->notEmptyString('username');
 
         $validator
             ->scalar('last_name')
             ->maxLength('last_name', 255)
-            ->allowEmptyString('last_name');
+            ->requirePresence('last_name', 'create')
+            ->notEmptyString('last_name');
 
         $validator
             ->email('email')
-            ->allowEmptyString('email');
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
 
         $validator
-            ->integer('id_association')
-            ->allowEmptyString('id_association');
+            ->scalar('password')
+            ->maxLength('password', 255)
+            ->requirePresence('password', 'create')
+            ->notEmptyString('password');
 
         $validator
-            ->integer('id_role')
-            // ->requirePresence('id_role', 'create')
-            ->allowEmptyString('id_role');
+            ->scalar('image_name')
+            ->maxLength('image_name', 255)
+            ->allowEmptyFile('image_name');
+
+        $validator
+            ->scalar('image_path')
+            ->maxLength('image_path', 255)
+            ->allowEmptyFile('image_path');
 
         return $validator;
     }
@@ -102,6 +119,8 @@ class UsersTable extends Table
     {
         $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
         $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
+        $rules->add($rules->existsIn(['association_id'], 'Associations'), ['errorField' => 'association_id']);
+        $rules->add($rules->existsIn(['role_id'], 'Roles'), ['errorField' => 'role_id']);
 
         return $rules;
     }

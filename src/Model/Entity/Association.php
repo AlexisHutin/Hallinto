@@ -4,25 +4,29 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Authentication\PasswordHasher\DefaultPasswordHasher;
 
 /**
- * User Entity
+ * Association Entity
  *
  * @property int $id
- * @property string $first_name
- * @property string $username
- * @property string $last_name
+ * @property string $name
+ * @property string $association_type
+ * @property string $adresse
  * @property string $email
- * @property string $password
- * @property int|null $association_id
- * @property int $role_id
+ * @property string $RNA_number
+ * @property string|null $plan_type
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $updated
  * @property string|null $image_name
  * @property string|null $image_path
+ *
+ * @property \App\Model\Entity\AccountingEntry[] $accounting_entries
+ * @property \App\Model\Entity\Member[] $members
+ * @property \App\Model\Entity\Statistic[] $statistics
+ * @property \App\Model\Entity\User[] $users
+ * @property \App\Model\Entity\Event[] $events
  */
-class User extends Entity
+class Association extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -34,32 +38,20 @@ class User extends Entity
      * @var array
      */
     protected $_accessible = [
-        'first_name' => true,
-        'username' => true,
-        'last_name' => true,
+        'name' => true,
+        'association_type' => true,
+        'adresse' => true,
         'email' => true,
-        'password' => true,
-        'association_id' => true,
-        'role_id' => true,
+        'RNA_number' => true,
+        'plan_type' => true,
         'created' => true,
         'updated' => true,
         'image_name' => true,
         'image_path' => true,
+        'accounting_entries' => true,
+        'members' => true,
+        'statistics' => true,
+        'users' => true,
+        'events' => true,
     ];
-
-    /**
-     * Fields that are excluded from JSON versions of the entity.
-     *
-     * @var array
-     */
-    protected $_hidden = [
-        'password',
-    ];
-
-    protected function _setPassword(string $password)
-    {
-        if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher())->hash($password);
-        }
-    }
 }

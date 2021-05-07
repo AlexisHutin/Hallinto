@@ -19,7 +19,7 @@
                 <?php
                     echo $this->Form->control('event_name');
                     echo $this->Form->control('start_date', ['empty' => true]);
-                    echo $this->Form->control('end_date');
+                    echo $this->Form->control('end_date', ['empty' => true]);
                     echo $this->Form->control('start_time', ['empty' => true]);
                     echo $this->Form->control('end_time', ['empty' => true]);
                     echo $this->Form->control('location');

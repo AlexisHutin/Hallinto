@@ -11,6 +11,11 @@ use Cake\Validation\Validator;
 /**
  * Events Model
  *
+ * @property \App\Model\Table\EventTypesTable&\Cake\ORM\Association\BelongsTo $EventTypes
+ * @property \App\Model\Table\AccountingEntriesTable&\Cake\ORM\Association\HasMany $AccountingEntries
+ * @property \App\Model\Table\StatisticsEventTable&\Cake\ORM\Association\HasMany $StatisticsEvent
+ * @property \App\Model\Table\AssociationsTable&\Cake\ORM\Association\BelongsToMany $Associations
+ *
  * @method \App\Model\Entity\Event newEmptyEntity()
  * @method \App\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Event[] newEntities(array $data, array $options = [])
@@ -24,6 +29,8 @@ use Cake\Validation\Validator;
  * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface saveManyOrFail(iterable $entities, $options = [])
  * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface|false deleteMany(iterable $entities, $options = [])
  * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface deleteManyOrFail(iterable $entities, $options = [])
+ *
+ * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
 class EventsTable extends Table
 {
@@ -38,8 +45,25 @@ class EventsTable extends Table
         parent::initialize($config);
 
         $this->setTable('events');
-        $this->setDisplayField('id_event');
-        $this->setPrimaryKey('id_event');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
+
+        $this->addBehavior('Timestamp');
+
+        $this->belongsTo('EventTypes', [
+            'foreignKey' => 'event_type_id',
+        ]);
+        $this->hasMany('AccountingEntries', [
+            'foreignKey' => 'event_id',
+        ]);
+        $this->hasMany('StatisticsEvent', [
+            'foreignKey' => 'event_id',
+        ]);
+        $this->belongsToMany('Associations', [
+            'foreignKey' => 'event_id',
+            'targetForeignKey' => 'association_id',
+            'joinTable' => 'associations_events',
+        ]);
     }
 
     /**
@@ -51,11 +75,11 @@ class EventsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('id_event')
-            ->allowEmptyString('id_event', null, 'create');
+            ->integer('id')
+            ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('event_name')
+            // ->scalar('event_name')
             ->maxLength('event_name', 255)
             ->allowEmptyString('event_name');
 
@@ -64,9 +88,8 @@ class EventsTable extends Table
             ->allowEmptyDate('start_date');
 
         $validator
-            ->scalar('end_date')
-            ->maxLength('end_date', 255)
-            ->allowEmptyString('end_date');
+            ->date('end_date')
+            ->allowEmptyDate('end_date');
 
         $validator
             ->time('start_time')
@@ -77,10 +100,24 @@ class EventsTable extends Table
             ->allowEmptyTime('end_time');
 
         $validator
-            ->scalar('location')
+            // ->scalar('location')
             ->maxLength('location', 255)
             ->allowEmptyString('location');
 
         return $validator;
+    }
+
+    /**
+     * Returns a rules checker object that will be used for validating
+     * application integrity.
+     *
+     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
+     * @return \Cake\ORM\RulesChecker
+     */
+    public function buildRules(RulesChecker $rules): RulesChecker
+    {
+        $rules->add($rules->existsIn(['event_type_id'], 'EventTypes'), ['errorField' => 'event_type_id']);
+
+        return $rules;
     }
 }

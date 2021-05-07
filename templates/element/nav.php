@@ -1,9 +1,9 @@
 <?php
     $pages=[
         ['Dashboard', '','icon-home'],
-        ['Members', 'Users','icon-users'],
+        ['Members', 'Members','icon-users'],
         ['Événements', 'Events','icon-calendar'],
-        ['Statistiques', 'Statistiques','icon-bar-chart'],
+        ['Statistiques', 'Statistics','icon-bar-chart'],
         ['Comptabilité', 'AccountingEntries','icon-euro'],
         ['Documents & Aide', '','icon-file-text'],
         ['FAQ', '','icon-help-circle'],

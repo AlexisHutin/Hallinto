@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 /**
@@ -14,6 +15,7 @@ declare(strict_types=1);
  * @since     0.2.9
  * @license   https://opensource.org/licenses/mit-license.php MIT License
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
@@ -36,7 +38,7 @@ class AppController extends Controller
         // index et view publiques, en ignorant la vérification d'authentification
         //$this->Auth->allow(['login', 'add']);
         $this->Authentication->addUnauthenticatedActions(['login', 'add']);
-        //$this->Auth->allow(['Users.add', 'Users.login']);
+       
     }
 
     /**
@@ -51,18 +53,19 @@ class AppController extends Controller
     public function initialize(): void
     {
         parent::initialize();
-       $this->loadComponent('RequestHandler');
-       $this->loadComponent('Flash');
+        $this->loadComponent('RequestHandler');
+        $this->loadComponent('Flash');
 
-       // Ajoutez cette ligne pour vérifier le résultat de l'authentification et verrouiller votre site
-       $this->loadComponent('Authentication.Authentication');
+        // Ajoutez cette ligne pour vérifier le résultat de l'authentification et verrouiller votre site
+        $this->loadComponent('Authentication.Authentication');
+
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
         //$this->loadComponent('FormProtection');
-/*
+        /*
         $this->loadComponent('Auth', [
             'loginRedirect' => [
                 'controller' => 'Users',
@@ -80,10 +83,9 @@ class AppController extends Controller
     {
         // Admin peuvent accéder à chaque action
         if (isset($user['id_role']) && $user['id_role'] === '2') {
-        return true;
+            return true;
         }
         // Par défaut refuser
         return false;
     }
-
 }

@@ -53,14 +53,14 @@ class MembersFixture extends TestFixture
                 'id' => 1,
                 'first_name' => 'Lorem ipsum dolor sit amet',
                 'last_name' => 'Lorem ipsum dolor sit amet',
-                'birth_date' => '2021-04-09',
+                'birth_date' => '2021-04-16',
                 'email' => 'Lorem ipsum dolor sit amet',
                 'phone_number' => 'Lorem ipsum dolor sit amet',
                 'contribution_is_paid' => 1,
                 'association_id' => 1,
                 'inscription_date' => 1,
-                'created' => '2021-04-09 14:55:52',
-                'updated' => '2021-04-09 14:55:52',
+                'created' => '2021-04-16 08:08:47',
+                'updated' => '2021-04-16 08:08:47',
             ],
         ];
         parent::init();

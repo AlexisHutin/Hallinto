@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\EventsTable;
+use App\Model\Table\EventTypesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\EventsTable Test Case
+ * App\Model\Table\EventTypesTable Test Case
  */
-class EventsTableTest extends TestCase
+class EventTypesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\EventsTable
+     * @var \App\Model\Table\EventTypesTable
      */
-    protected $Events;
+    protected $EventTypes;
 
     /**
      * Fixtures
@@ -24,11 +24,8 @@ class EventsTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Events',
         'app.EventTypes',
-        'app.AccountingEntries',
-        'app.StatisticsEvent',
-        'app.Associations',
+        'app.Events',
     ];
 
     /**
@@ -39,8 +36,8 @@ class EventsTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Events') ? [] : ['className' => EventsTable::class];
-        $this->Events = $this->getTableLocator()->get('Events', $config);
+        $config = $this->getTableLocator()->exists('EventTypes') ? [] : ['className' => EventTypesTable::class];
+        $this->EventTypes = $this->getTableLocator()->get('EventTypes', $config);
     }
 
     /**
@@ -50,7 +47,7 @@ class EventsTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Events);
+        unset($this->EventTypes);
 
         parent::tearDown();
     }
@@ -61,16 +58,6 @@ class EventsTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
