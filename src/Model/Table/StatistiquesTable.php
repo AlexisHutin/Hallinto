@@ -38,8 +38,8 @@ class StatistiquesTable extends Table
         parent::initialize($config);
 
         $this->setTable('statistiques');
-        $this->setDisplayField('id_statistiques');
-        $this->setPrimaryKey('id_statistiques');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
     }
 
     /**

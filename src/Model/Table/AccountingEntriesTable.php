@@ -43,8 +43,8 @@ class AccountingEntriesTable extends Table
         parent::initialize($config);
 
         $this->setTable('accounting_entries');
-        $this->setDisplayField('id_accounting_entries');
-        $this->setPrimaryKey('id_accounting_entries');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 

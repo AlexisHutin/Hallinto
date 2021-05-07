@@ -11,6 +11,11 @@ use Cake\Validation\Validator;
 /**
  * Events Model
  *
+ * @property \App\Model\Table\EventTypesTable&\Cake\ORM\Association\BelongsTo $EventTypes
+ * @property \App\Model\Table\AccountingEntriesTable&\Cake\ORM\Association\HasMany $AccountingEntries
+ * @property \App\Model\Table\StatisticsEventTable&\Cake\ORM\Association\HasMany $StatisticsEvent
+ * @property \App\Model\Table\AssociationsTable&\Cake\ORM\Association\BelongsToMany $Associations
+ *
  * @method \App\Model\Entity\Event newEmptyEntity()
  * @method \App\Model\Entity\Event newEntity(array $data, array $options = [])
  * @method \App\Model\Entity\Event[] newEntities(array $data, array $options = [])
@@ -40,8 +45,8 @@ class EventsTable extends Table
         parent::initialize($config);
 
         $this->setTable('events');
-        $this->setDisplayField('id_event');
-        $this->setPrimaryKey('id_event');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 
@@ -74,7 +79,7 @@ class EventsTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->scalar('event_name')
+            // ->scalar('event_name')
             ->maxLength('event_name', 255)
             ->allowEmptyString('event_name');
 
@@ -83,9 +88,8 @@ class EventsTable extends Table
             ->allowEmptyDate('start_date');
 
         $validator
-            ->scalar('end_date')
-            ->maxLength('end_date', 255)
-            ->allowEmptyString('end_date');
+            ->date('end_date')
+            ->allowEmptyDate('end_date');
 
         $validator
             ->time('start_time')
@@ -96,7 +100,7 @@ class EventsTable extends Table
             ->allowEmptyTime('end_time');
 
         $validator
-            ->scalar('location')
+            // ->scalar('location')
             ->maxLength('location', 255)
             ->allowEmptyString('location');
 
