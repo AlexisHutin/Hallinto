@@ -8,14 +8,14 @@
         </div>
       </div>
       <div class="container-fluid text-center">
-        <div class="row mx-2">
-          <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#dashboardModal-addMemberModal">
+        <div class="row mx-2 justify-content-end">
+          <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addMemberModal">
             Ajouter un membre
           </button>
-          <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#dashboardModal-addComptaModal">
+          <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addComptaModal">
             Ajouter une opération comptabilité
           </button>
-          <button type="button" class="btn btn-primary mx-2" data-toggle="modal" data-target="#dashboardModal-addEventModal">
+          <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addEventModal">
             Créer un événement
           </button>
         </div>
@@ -34,13 +34,11 @@
             <div class="card p-0 overflow-hidden h-100">
               <div class="col-12 p-2">
                 <p class="th1-1 purple-font">
-                  <?php
-                  if($total>0){
-                    echo "+".$total;
-                  }else{
-                    echo "-".$total;
-                  }
-                  ?>
+                  <?php if($total>0):?>
+                    <span>+<?=$total?>
+                  <?php else:?>
+                    <span>-<?=$total?>
+                  <?php endif;?>
                   €</p>
                   <p class="display-5 mb-0">Solde opérations comptables</p>
               </div>
@@ -80,22 +78,18 @@
                 <div class="text-center p-relative d-inline-block">
                   <div class="horizontal-center rounded-corners white-font purple-background w-100 h-100">
                     <div class="horizontal-center">
-                    <?php 
-                    list($day1, $month1, $year1)= explode('/',$query4[0]['start_date']);
-                    $dateObj   = DateTime::createFromFormat('!m', $month1);
-                    $monthName = $dateObj->format('F');
-                    ?>
 
-                      <p class="th1-1"><?=$day1?></p>
-                      <p><?= $monthName." ".$year1?></p>
+                      <span class="th1-1 "><?= h($query4[0]->events[0]->start_date->format('d')) ?></span> <br>
+                      <span style="font-size: 1.3em;"><?= h($query4[0]->events[0]->start_date->format('F Y')) ?></span>
+
                     </div>
                   </div>
                 </div>
               </div>
               <div class="col-8 text-left d-inline-block">
-                <h5><?=$query4[0]['event_name']?></h5>
-                <p><?=$query4[0]['location']?></p>
-                <p><?=$query4[0]['start_date']?></p>
+                <h5><?=$query4[0]->events[0]->event_name?></h5>
+                <p><?=$query4[0]->events[0]->location?></p>
+                <p><?=$query4[0]->events[0]->start_date?></p>
                 <p>NOMBRE PARTICIPANTS</p>
               </div>
             </div>
@@ -104,22 +98,16 @@
                 <div class="text-center p-relative d-inline-block">
                   <div class="horizontal-center rounded-corners white-font orange-background w-100 h-100">
                     <div class="horizontal-center">
-                    <?php 
-                    list($day2, $month2, $year2)= explode('/',$query4[1]['start_date']);
-                    $dateObj   = DateTime::createFromFormat('!m', $month2);
-                    $monthName = $dateObj->format('F');
-                    ?>
-
-                      <p class="th1-1"><?=$day2?></p>
-                      <p><?= $monthName." ".$year2?></p>
+                    <span class="th1-1 "><?= h($query4[0]->events[0]->start_date->format('d')) ?></span> <br>
+                      <span style="font-size: 1.3em;"><?= h($query4[0]->events[0]->start_date->format('F Y')) ?></span>
                       </div>
                   </div>
                 </div>
               </div>
               <div class="col-8 text-left d-inline-block">
-              <h5><?=$query4[1]['event_name']?></h5>
-                <p><?=$query4[1]['location']?></p>
-                <p><?=$query4[1]['start_date']?></p>
+              <h5><?=$query4[0]->events[1]->event_name?></h5>
+                <p><?=$query4[0]->events[1]->location?></p>
+                <p><?=$query4[0]->events[1]->start_date?></p>
                 <p>NOMBRE PARTICIPANTS</p>
               </div>
             </div>  
@@ -158,10 +146,10 @@
 </div>
 
 <?php
-
+/*
 echo $this->element('Pages/modal',['modalType' =>'addMemberModal']);
 echo $this->element('Pages/modal',['modalType' =>'addComptaModal']);
-echo $this->element('Pages/modal',['modalType' =>'addEventModal']);
+echo $this->element('Pages/modal',['modalType' =>'addEventModal']);*/
 ?>
 
 <?= $this->Html->script(['Pages/dashboardChart']) ?>
