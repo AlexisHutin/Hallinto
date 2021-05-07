@@ -18,7 +18,7 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenTime|null $updated
  *
  * @property \App\Model\Entity\Association $association
- * @property \App\Model\Entity\TypeOfAccountingEntry $type_of_accounting_entry
+ * @property \App\Model\Entity\AccountingEntryType $accounting_entry_type
  * @property \App\Model\Entity\Event $event
  */
 class AccountingEntry extends Entity
@@ -41,7 +41,7 @@ class AccountingEntry extends Entity
         'created' => true,
         'updated' => true,
         'association' => true,
-        'type_of_accounting_entry' => true,
+        'accounting_entry_type' => true,
         'event' => true,
     ];
 }

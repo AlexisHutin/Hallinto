@@ -55,8 +55,8 @@ class AccountingEntriesFixture extends TestFixture
                 'event_id' => 1,
                 'amount' => 1.5,
                 'reason' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
-                'created' => '2021-04-09 19:36:32',
-                'updated' => '2021-04-09 19:36:32',
+                'created' => '2021-05-05 14:49:57',
+                'updated' => '2021-05-05 14:49:57',
             ],
         ];
         parent::init();

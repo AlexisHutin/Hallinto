@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\AccountingEntriesTable;
+use App\Model\Table\AccountingEntryTypeTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\AccountingEntriesTable Test Case
+ * App\Model\Table\AccountingEntryTypeTable Test Case
  */
-class AccountingEntriesTableTest extends TestCase
+class AccountingEntryTypeTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\AccountingEntriesTable
+     * @var \App\Model\Table\AccountingEntryTypeTable
      */
-    protected $AccountingEntries;
+    protected $AccountingEntryType;
 
     /**
      * Fixtures
@@ -24,10 +24,8 @@ class AccountingEntriesTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.AccountingEntries',
-        'app.Associations',
         'app.AccountingEntryType',
-        'app.Events',
+        'app.AccountingEntries',
     ];
 
     /**
@@ -38,8 +36,8 @@ class AccountingEntriesTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('AccountingEntries') ? [] : ['className' => AccountingEntriesTable::class];
-        $this->AccountingEntries = $this->getTableLocator()->get('AccountingEntries', $config);
+        $config = $this->getTableLocator()->exists('AccountingEntryType') ? [] : ['className' => AccountingEntryTypeTable::class];
+        $this->AccountingEntryType = $this->getTableLocator()->get('AccountingEntryType', $config);
     }
 
     /**
@@ -49,7 +47,7 @@ class AccountingEntriesTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->AccountingEntries);
+        unset($this->AccountingEntryType);
 
         parent::tearDown();
     }
@@ -60,16 +58,6 @@ class AccountingEntriesTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
