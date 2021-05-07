@@ -4,13 +4,13 @@
       <?php
         switch ($modalType) {
           case 'addMemberModal':
-              echo $this->element('Pages/addMemberModal');
+              echo $this->element('Members/add');
               break;
           case 'addComptaModal':
-              echo $this->element('Pages/addComptaModal');
+              echo $this->element('AccountingEntries/add');
               break;
           case 'addEventModal':
-              echo $this->element('Pages/addEventModal');
+              echo $this->element('Events/add');
               break;
         }
       ?>

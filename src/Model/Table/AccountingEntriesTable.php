@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * AccountingEntries Model
  *
  * @property \App\Model\Table\AssociationsTable&\Cake\ORM\Association\BelongsTo $Associations
+ * @property \App\Model\Table\AccountingEntryTypeTable&\Cake\ORM\Association\BelongsTo $AccountingEntryType
  * @property \App\Model\Table\EventsTable&\Cake\ORM\Association\BelongsTo $Events
  *
  * @method \App\Model\Entity\AccountingEntry newEmptyEntity()

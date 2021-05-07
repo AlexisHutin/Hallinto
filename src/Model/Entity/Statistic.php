@@ -6,22 +6,19 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * AccountingEntry Entity
+ * Statistic Entity
  *
  * @property int $id
  * @property int $association_id
- * @property int $accounting_entry_type_id
- * @property int|null $event_id
- * @property string|null $amount
- * @property string|null $reason
+ * @property int $statistics_type_id
+ * @property string $data
  * @property \Cake\I18n\FrozenTime|null $created
  * @property \Cake\I18n\FrozenTime|null $updated
  *
  * @property \App\Model\Entity\Association $association
- * @property \App\Model\Entity\AccountingEntryType $accounting_entry_type
- * @property \App\Model\Entity\Event $event
+ * @property \App\Model\Entity\StatisticsType $statistics_type
  */
-class AccountingEntry extends Entity
+class Statistic extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -34,14 +31,11 @@ class AccountingEntry extends Entity
      */
     protected $_accessible = [
         'association_id' => true,
-        'accounting_entry_type_id' => true,
-        'event_id' => true,
-        'amount' => true,
-        'reason' => true,
+        'statistics_type_id' => true,
+        'data' => true,
         'created' => true,
         'updated' => true,
         'association' => true,
-        'accounting_entry_type' => true,
-        'event' => true,
+        'statistics_type' => true,
     ];
 }

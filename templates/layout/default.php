@@ -56,12 +56,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body class="h-100">
-    <div class="container-fluid h-100">
-        
-                    <?= $this->Flash->render() ?>
-                    <?= $this->fetch('content') ?>
-                
-        </div>
+    <div class="container-fluid h-100 ">
+        <?= $this->Flash->render() ?>
+        <?= $this->fetch('content') ?>
     </div>
     <!-- <main class="main"> -->
 
