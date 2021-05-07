@@ -21,14 +21,14 @@
         </div>
       </div>
       <div class="container-fluid boxes">
-        <div class="row mt-5 mx-0">
+        <div class="row mt-5 mx-0" >
 
-          <div class="col-3 h-100">
-            <div class="card text-center p-2 h-100">
-              <p class="th1-1 purple-font"><?= $query1[0]['count'] ?></p>
-              <p class="display-5">Adhérents à ASSO</p>
+            <div class="col-3 h-100">
+              <div class="card text-center p-2 h-100">
+                <p class="th1-1 purple-font"><?=$query1[0]['count']?></p>
+                <p class="display-5">Adhérents à ASSO</p>
+              </div>
             </div>
-          </div>
 
           <div class="col-6 h-100">
             <div class="card p-0 overflow-hidden h-100">
@@ -37,39 +37,39 @@
                   <?php if($total>0):?>
                     <span>+<?=$total?>
                   <?php else:?>
-                    <span>-<?=$total?>
+                    <span><?=$total?>
                   <?php endif;?>
                   €</p>
-                <p class="display-5 mb-0">Solde opérations comptables</p>
+                  <p class="display-5 mb-0">Solde opérations comptables</p>
               </div>
               <div class="col-12 p-0 dashboard chart-container">
-                <canvas id="dashboardChart" data-amounts='<?= $amounts ?>'></canvas>
+                <canvas id="dashboardChart" data-amounts='<?=$amounts?>'></canvas>
               </div>
             </div>
           </div>
 
           <div class="col-3 h-100">
-            <div class="card text-center p-2 h-100">
-              <h5>Documents importants</h5>
-              <ul class="list-group">
-                <li class="list-group-item">
-                  <i class="icon-file-text d-inline-block"></i>
-                  DocumentAG.pdf
-                </li>
-                <li class="list-group-item">
-                  <i class="icon-file-text d-inline-block"></i>
-                  RécapitulatifMensuel.pdf
-                </li>
-                <li class="list-group-item">
-                  <i class="icon-file-text d-inline-block"></i>
-                  DocumentEtatDesLieux.pdf
-                </li>
-              </ul>
-            </div>
+              <div class="card text-center p-2 h-100">
+                <h5>Documents importants</h5>
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <i class="icon-file-text d-inline-block"></i>
+                    DocumentAG.pdf
+                  </li>
+                  <li class="list-group-item">
+                    <i class="icon-file-text d-inline-block"></i>
+                    RécapitulatifMensuel.pdf
+                  </li>
+                  <li class="list-group-item">
+                    <i class="icon-file-text d-inline-block"></i>
+                    DocumentEtatDesLieux.pdf
+                  </li>
+                </ul>
+              </div>
           </div>
 
         </div>
-        <div class="row mt-5 mx-0">
+        <div class="row mt-5 mx-0" >
           <div class="col-8 h-100">
             <div class="card text-center p-2 h-100">
             <h5>Evénements à venir</h5>
@@ -84,12 +84,6 @@
 
                     </div>
                   </div>
-                </div>
-                <div class="col-8 text-left d-inline-block">
-                  <h5><?= $query4[0]['event_name'] ?></h5>
-                  <p><?= $query4[0]['location'] ?></p>
-                  <p><?= $query4[0]['start_date'] ?></p>
-                  <p>NOMBRE PARTICIPANTS</p>
                 </div>
               </div>
               <div class="col-8 text-left d-inline-block">
@@ -107,14 +101,7 @@
                     <span class="th1-1 "><?= h($query4[0]->events[0]->start_date->format('d')) ?></span> <br>
                       <span style="font-size: 1.3em;"><?= h($query4[0]->events[0]->start_date->format('F Y')) ?></span>
                       </div>
-                    </div>
                   </div>
-                </div>
-                <div class="col-8 text-left d-inline-block">
-                  <h5><?= $query4[1]['event_name'] ?></h5>
-                  <p><?= $query4[1]['location'] ?></p>
-                  <p><?= $query4[1]['start_date'] ?></p>
-                  <p>NOMBRE PARTICIPANTS</p>
                 </div>
               </div>
               <div class="col-8 text-left d-inline-block">
@@ -125,22 +112,29 @@
               </div>
             </div>  
           </div>
+        </div>
           <div class="col-4 h-100">
             <div class="card text-center p-2 h-100">
               <h5>Derniers mouvements comptables</h5>
 
               <table class="table">
                 <tbody>
-                  <?php foreach ($query3 as $recentEntry) : ?>
-                    <tr>
-                      <td scope='row' class='text-left'> <?= $recentEntry['reason'] ?></td>
-                      <?php if ($recentEntry['accounting_entry_type_id'] == 2) : ?>
-                        <td scope='row' class='text-right orange-font'>-<?= $recentEntry['amount'] ?></td>
-                      <?php elseif ($recentEntry['accounting_entry_type_id'] == 1) : ?>
-                        <td scope='row' class='text-right purple-font'>+<?= $recentEntry['amount'] ?></td>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-                    </tr>
+                    <?php foreach($query3 as $recentEntry){?>
+                        <tr>
+                          <td scope='row' class='text-left'> <?=$recentEntry['reason']?></td>
+                          <?php 
+                            if($recentEntry['accounting_entry_type_id'] == 2){?>
+                              <td scope='row' class='text-right orange-font'>-<?=$recentEntry['amount']?></td>
+                          <?php
+                            }elseif($recentEntry['accounting_entry_type_id'] == 1){?>
+                              <td scope='row' class='text-right purple-font'>+<?=$recentEntry['amount']?></td>
+                          <?php
+                            }
+                          ?>
+                          
+                        </tr>
+                        
+                    <?php ;}?>
                 </tbody>
               </table>
             </div>
@@ -158,4 +152,11 @@ echo $this->element('Pages/modal',['modalType' =>'addComptaModal']);
 echo $this->element('Pages/modal',['modalType' =>'addEventModal']);*/
 ?>
 
+<script>
+let data = <?= $amounts ?>
+
+</script>
+
 <?= $this->Html->script(['Pages/dashboardChart']) ?>
+
+

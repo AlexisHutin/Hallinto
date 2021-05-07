@@ -17,19 +17,21 @@ selectedRowValues = function(transaction,results)
 
 var ctx = document.getElementById('dashboardChart').getContext('2d');
 
-var data = [];
-data = document.getElementById('dashboardChart').dataset.amounts;
+// var data = [];
+// data = document.getElementById('dashboardChart').dataset.amounts;
 
 console.log(data);
+console.log(data.length);
 
-const labels = [1,2,3,4,5,6,7];
+const labels = [];
+
 
 var dashboardChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: labels,
+        labels: data,
         datasets: [{
-            data: [50,-32.4,-25,-64.02,15,63.32,147.01,82.01],
+            data: data,
             backgroundColor: '#A896CF',
             pointRadius: 0,
             borderWidth: 2,
