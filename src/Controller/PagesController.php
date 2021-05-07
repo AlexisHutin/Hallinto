@@ -46,6 +46,10 @@ class PagesController extends AppController
      */
     public function display(string ...$path): ?Response
     {
+
+        $current_user = $this->Authentication->getIdentity();
+        $current_asso = $current_user->association_id;
+
         if (!$path) {
             return $this->redirect('/');
         }
@@ -62,15 +66,21 @@ class PagesController extends AppController
         }
         $this->set(compact('page', 'subpage'));
  
-        $query1 = TableRegistry::getTableLocator()->get('Members')->find();
+        $query1 = TableRegistry::getTableLocator()->get('Members')
+                ->find();
+                
         $query1->select(['count' => $query1->func()->count('*')]);
         $query1 = $query1->toArray();
 
         $this->set(compact('query1'));
 
         $query2 = TableRegistry::getTableLocator()->get('AccountingEntries')->find();
-        $query2->find('all');
-        $query2 = $query2->toArray();
+        $query2->find('all')
+                ->where([
+                    'association_id' => $current_asso,
+                    'association_id IS NOT' => null
+                    ]);
+        //$query2 = $query2->toArray();
         $this->set(compact('query2'));
 
         $total=0;
@@ -107,6 +117,10 @@ class PagesController extends AppController
                 'AccountingEntries.reason',
                 'AccountingEntries.created',
                 ])
+                ->where([
+                    'association_id' => $current_asso,
+                    'association_id IS NOT' => null
+                    ])
                 ->limit(7);
         
         $query3->orderDesc('AccountingEntries.created');
@@ -115,10 +129,15 @@ class PagesController extends AppController
         $this->set(compact('query3'));
 
         //SELECT * FROM associations_events LEFT JOIN events ON associations_events.event_id = events.id WHERE association_id = 1 LIMIT 2
-        $query4 = TableRegistry::getTableLocator()->get('events')->find()
-                ->limit(2)
-                ->orderDesc('events.start_date');
+        $query4 = TableRegistry::getTableLocator()->get('Associations')->find()
+                ->contain('Events')
+                ->where([
+                    'Associations.id' => $current_asso,
+                    ])
+                ->limit(2);
+                //->orderDesc('Events.start_date');
 
+        //dd($query4->toArray());
         $query4 = $query4->toArray();
         $this->set(compact('query4'));
 
@@ -132,5 +151,131 @@ class PagesController extends AppController
         }
 
     }
+
+    /*public function home(){
+        $current_user = $this->Authentication->getIdentity();
+        $current_asso = $current_user->association_id;
+
+        if (!$path) {
+            return $this->redirect('/');
+        }
+        if (in_array('..', $path, true) || in_array('.', $path, true)) {
+            throw new ForbiddenException();
+        }
+        $page = $subpage = null;
+
+        if (!empty($path[0])) {
+            $page = $path[0];
+        }
+        if (!empty($path[1])) {
+            $subpage = $path[1];
+        }
+        $this->set(compact('page', 'subpage'));
+ 
+        $query1 = TableRegistry::getTableLocator()->get('Members')
+                ->find();
+                
+        $query1->select(['count' => $query1->func()->count('*')]);
+        $query1 = $query1->toArray();
+
+        $this->set(compact('query1'));
+
+        $query2 = TableRegistry::getTableLocator()->get('AccountingEntries')->find();
+        $query2->find('all')
+                ->where([
+                    'association_id' => $current_asso,
+                    'association_id IS NOT' => null
+                    ]);
+        //$query2 = $query2->toArray();
+        $this->set(compact('query2'));
+
+        $total=0;
+        foreach ($query2 as $amount) {
+            if($amount['accounting_entry_type_id'] == 2){
+                $total = $total - $amount['amount'];
+            }elseif($amount['accounting_entry_type_id'] == 1){
+                $total = $total + $amount['amount'];
+            }
+            
+        }
+        $this->set(compact('total'));
+
+        $arrayAmounts = array();
+        foreach ($query2 as $amount) {
+            if($amount['accounting_entry_type_id'] == 2){
+                array_push($arrayAmounts , '-'.$amount['amount']); 
+            }elseif($amount['accounting_entry_type_id'] == 1){
+                array_push($arrayAmounts , '+'.$amount['amount']); 
+            }
+             
+        }
+        
+        $amounts = json_encode($arrayAmounts, JSON_NUMERIC_CHECK);
+        $this->set(compact('amounts'));
+
+
+        $query3 = TableRegistry::getTableLocator()->get('AccountingEntries')->find();
+        $query3->select([
+                'AccountingEntries.id', 
+                'AccountingEntries.association_id',
+                'AccountingEntries.accounting_entry_type_id',
+                'AccountingEntries.amount',
+                'AccountingEntries.reason',
+                'AccountingEntries.created',
+                ])
+                ->where([
+                    'association_id' => $current_asso,
+                    'association_id IS NOT' => null
+                    ])
+                ->limit(7);
+        
+        $query3->orderDesc('AccountingEntries.created');
+
+        $query3 = $query3->toArray();
+        $this->set(compact('query3'));
+
+        //SELECT * FROM associations_events LEFT JOIN events ON associations_events.event_id = events.id WHERE association_id = 1 LIMIT 2
+        $query4 = TableRegistry::getTableLocator()->get('Associations')->find()
+                ->contain('Events')
+                ->where([
+                    'Associations.id' => $current_asso,
+                    ])
+                ->limit(2);
+                //->orderDesc('Events.start_date');
+
+        //dd($query4->toArray());
+        $query4 = $query4->toArray();
+        $this->set(compact('query4'));
+
+    }
+
+    public function display(string ...$path): ?Response
+    {
+        $this->home();
+        if (!$path) {
+            return $this->redirect('/');
+        }
+        if (in_array('..', $path, true) || in_array('.', $path, true)) {
+            throw new ForbiddenException();
+        }
+        $page = $subpage = null;
+
+        if (!empty($path[0])) {
+            $page = $path[0];
+        }
+        if (!empty($path[1])) {
+            $subpage = $path[1];
+        }
+        $this->set(compact('page', 'subpage'));
+
+        try {
+            return $this->render(implode('/', $path));
+        } catch (MissingTemplateException $exception) {
+            if (Configure::read('debug')) {
+                throw $exception;
+            }
+            throw new NotFoundException();
+        }
+    }*/
 
 }
