@@ -84,25 +84,21 @@ class PagesController extends AppController
         $this->set(compact('query2'));
 
         $total=0;
-        foreach ($query2 as $amount) {
-            if($amount['accounting_entry_type_id'] == 2){
-                $total = $total - $amount['amount'];
-            }elseif($amount['accounting_entry_type_id'] == 1){
-                $total = $total + $amount['amount'];
+        $arrayAmounts = array();
+        foreach ($query2->toArray() as $amount) {
+            if($amount->accounting_entry_type_id == 2){
+                $total = $total - $amount->amount;
+                $total = round($total,2,PHP_ROUND_HALF_UP);
+                array_push($arrayAmounts, $total);
+            }elseif($amount->accounting_entry_type_id == 1
+            ||$amount->accounting_entry_type_id == 4){
+                $total = $total + $amount->amount;
+                $total = round($total,2,PHP_ROUND_HALF_UP);
+                array_push($arrayAmounts, $total);
             }
             
         }
         $this->set(compact('total'));
-
-        $arrayAmounts = array();
-        foreach ($query2 as $amount) {
-            if($amount['accounting_entry_type_id'] == 2){
-                array_push($arrayAmounts , '-'.$amount['amount']); 
-            }elseif($amount['accounting_entry_type_id'] == 1){
-                array_push($arrayAmounts , '+'.$amount['amount']); 
-            }
-             
-        }
         
         $amounts = json_encode($arrayAmounts, JSON_NUMERIC_CHECK);
         $this->set(compact('amounts'));
