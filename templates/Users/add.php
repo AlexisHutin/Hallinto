@@ -10,7 +10,12 @@ use Cake\I18n\FrozenTime;
 <div class="beige-background w-100 h-100 px-4">
     <div class="container-fluid">
         <div class="row py-4">
-            <?= $this->Html->image('hallinto-logo.png', ['alt' => 'Hallinto logo', 'class'=>'hallintoLogo']); ?>
+        <div class="col-6 p-0">
+                <?= $this->Html->image('hallinto-logo.png', ['alt' => 'Hallinto logo', 'class'=>'hallintoLogo']); ?>
+            </div>
+            <div class="col-6 py-3 text-right">
+                <?= $this->Html->link("Se connecter", ['action' => 'login']) ?>
+            </div>
         </div>
     </div>
     <div class="container py-5">
@@ -29,12 +34,9 @@ use Cake\I18n\FrozenTime;
                             echo $this->Form->control('email',['class' =>'form-control']);
                         ?>
                     </fieldset>
-                    <div class="row col-12 text-center mt-4">
-                        <div class="col-6">
-                            <?= $this->Form->button(__('Submit'),['class' =>'btn btn-primary col-6'])?>
-                        </div>
-                        <div class="col-6">
-                            <?= $this->Html->link("Se connecter", ['action' => 'login']) ?>
+                    <div class="col-12 text-center mt-4 px-5">
+                        <div class="">
+                            <?= $this->Form->button(__('Submit'),['class' =>'btn button-full tx3'])?>
                         </div>
                     </div>
 
