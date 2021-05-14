@@ -1,10 +1,4 @@
-getData = function(val)
-{
-    db.transaction(function(transaction) {
-          transaction.executeSql('SELECT * FROM `accounting_entries`',[parseInt(val)], selectedRowValues, errorHandler);
 
-    });
-};
 selectedRowValues = function(transaction,results)
 {
      for(var i = 0; i < results.rows.length; i++)
@@ -17,14 +11,9 @@ selectedRowValues = function(transaction,results)
 
 var ctx = document.getElementById('dashboardChart').getContext('2d');
 
-// var data = [];
-// data = document.getElementById('dashboardChart').dataset.amounts;
-
-console.log(data);
-console.log(data.length);
-
-const labels = [];
-
+var gradient = ctx.createLinearGradient(0, 0, 0, 150);
+gradient.addColorStop(0, '#A896CF');   
+gradient.addColorStop(1, '#E2DCEF');
 
 var dashboardChart = new Chart(ctx, {
     type: 'line',
@@ -32,7 +21,7 @@ var dashboardChart = new Chart(ctx, {
         labels: data,
         datasets: [{
             data: data,
-            backgroundColor: '#A896CF',
+            backgroundColor: gradient,
             pointRadius: 0,
             borderWidth: 2,
             borderColor: '#8B73BF',
@@ -47,13 +36,13 @@ var dashboardChart = new Chart(ctx, {
         scales: {
             yAxes: [{
                 display:false,
-                min: -100,
-                max: 100
+
             }],
             xAxes: [{
                 display:false
             }]
         },
-         maintainAspectRatio: false,
+        maintainAspectRatio: false,
+        responsive: true,
     }
 });
