@@ -249,7 +249,6 @@ class PagesController extends AppController
 
     }
 
-<<<<<<< Updated upstream
     public function display(string ...$path): ?Response
     {
         $this->home();
@@ -279,10 +278,4 @@ class PagesController extends AppController
         }
     }*/
 
-=======
-    public function home()
-    {
-        
-    }
->>>>>>> Stashed changes
 }
