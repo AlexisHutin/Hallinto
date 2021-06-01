@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsersTable;
+use App\Model\Table\RolesTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsersTable Test Case
+ * App\Model\Table\RolesTable Test Case
  */
-class UsersTableTest extends TestCase
+class RolesTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsersTable
+     * @var \App\Model\Table\RolesTable
      */
-    protected $Users;
+    protected $Roles;
 
     /**
      * Fixtures
@@ -24,9 +24,8 @@ class UsersTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Users',
-        'app.Associations',
         'app.Roles',
+        'app.Users',
     ];
 
     /**
@@ -37,8 +36,8 @@ class UsersTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = $this->getTableLocator()->get('Users', $config);
+        $config = $this->getTableLocator()->exists('Roles') ? [] : ['className' => RolesTable::class];
+        $this->Roles = $this->getTableLocator()->get('Roles', $config);
     }
 
     /**
@@ -48,7 +47,7 @@ class UsersTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Users);
+        unset($this->Roles);
 
         parent::tearDown();
     }
@@ -59,16 +58,6 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

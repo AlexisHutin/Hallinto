@@ -27,6 +27,9 @@
                 <tbody>
                     <?php foreach ($members as $member) : ?>
                         <tr>
+
+<?= $entry->type = 1 ? '+' : '-' ?>
+
                             <td><?= h($member->first_name) ?></td>
                             <td><?= h($member->last_name) ?></td>
                             <?php if ($member->contribution_is_paid) : ?>
