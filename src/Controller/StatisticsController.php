@@ -4,12 +4,11 @@ declare(strict_types=1);
 namespace App\Controller;
 
 /**
- * Events Controller
+ * Statistics Controller
  *
- * @property \App\Model\Table\EventsTable $Events
- * @method \App\Model\Entity\Event[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
+ * @method \App\Model\Entity\Statistic[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
  */
-class EventsController extends AppController
+class StatisticsController extends AppController
 {
     /**
      * Index method
@@ -18,26 +17,25 @@ class EventsController extends AppController
      */
     public function index()
     {
-        $events = $this->Events->find()
-        ->contain('EventTypes');
+        $statistics = $this->paginate($this->Statistics);
 
-        $this->set(compact('events'));
+        $this->set(compact('statistics'));
     }
 
     /**
      * View method
      *
-     * @param string|null $id Event id.
+     * @param string|null $id Statistic id.
      * @return \Cake\Http\Response|null|void Renders view
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
     {
-        $event = $this->Events->get($id, [
+        $statistic = $this->Statistics->get($id, [
             'contain' => [],
         ]);
 
-        $this->set(compact('event'));
+        $this->set(compact('statistic'));
     }
 
     /**
@@ -47,59 +45,58 @@ class EventsController extends AppController
      */
     public function add()
     {
-        $event = $this->Events->newEmptyEntity();
+        $statistic = $this->Statistics->newEmptyEntity();
         if ($this->request->is('post')) {
-            $event = $this->Events->patchEntity($event, $this->request->getData());
-          
-            if ($this->Events->save($event)) {
-                $this->Flash->success(__('The event has been saved.'));
-                
+            $statistic = $this->Statistics->patchEntity($statistic, $this->request->getData());
+            if ($this->Statistics->save($statistic)) {
+                $this->Flash->success(__('The statistic has been saved.'));
+
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The event could not be saved. Please, try again.'));
+            $this->Flash->error(__('The statistic could not be saved. Please, try again.'));
         }
-        $this->set(compact('event'));
+        $this->set(compact('statistic'));
     }
 
     /**
      * Edit method
      *
-     * @param string|null $id Event id.
+     * @param string|null $id Statistic id.
      * @return \Cake\Http\Response|null|void Redirects on successful edit, renders view otherwise.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
     {
-        $event = $this->Events->get($id, [
+        $statistic = $this->Statistics->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $event = $this->Events->patchEntity($event, $this->request->getData());
-            if ($this->Events->save($event)) {
-                $this->Flash->success(__('The event has been saved.'));
+            $statistic = $this->Statistics->patchEntity($statistic, $this->request->getData());
+            if ($this->Statistics->save($statistic)) {
+                $this->Flash->success(__('The statistic has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The event could not be saved. Please, try again.'));
+            $this->Flash->error(__('The statistic could not be saved. Please, try again.'));
         }
-        $this->set(compact('event'));
+        $this->set(compact('statistic'));
     }
 
     /**
      * Delete method
      *
-     * @param string|null $id Event id.
+     * @param string|null $id Statistic id.
      * @return \Cake\Http\Response|null|void Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
-        $event = $this->Events->get($id);
-        if ($this->Events->delete($event)) {
-            $this->Flash->success(__('The event has been deleted.'));
+        $statistic = $this->Statistics->get($id);
+        if ($this->Statistics->delete($statistic)) {
+            $this->Flash->success(__('The statistic has been deleted.'));
         } else {
-            $this->Flash->error(__('The event could not be deleted. Please, try again.'));
+            $this->Flash->error(__('The statistic could not be deleted. Please, try again.'));
         }
 
         return $this->redirect(['action' => 'index']);

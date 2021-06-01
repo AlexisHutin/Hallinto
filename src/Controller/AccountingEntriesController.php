@@ -16,11 +16,69 @@ class AccountingEntriesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+
     public function index()
     {
-        $accountingEntries = $this->paginate($this->AccountingEntries);
+        $accountingEntries = null;
 
+        $this->loadModel('AccountingEntryType');
+        $type= $this->AccountingEntryType
+            ->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'type_name'
+            ])
+            ->toArray();
+        
+ 
+        $this->set(compact('type'));
+
+        $this->loadModel('Events');
+        $event= $this->Events
+            ->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'event_name'
+            ])
+            ->toArray();
+        
+ 
+        $this->set(compact('event'));
+
+        $current_user = $this->Authentication->getIdentity();
+
+        if ($current_user->association_id != null) {
+            $accountingEntries = $this->AccountingEntries->find()
+                ->contain('Associations')
+                ->where([
+                    'association_id' => $current_user->association_id,
+                ])
+                ->orderDesc('AccountingEntries.created');
+        }
+        $accountingEntries= $accountingEntries->toArray();
         $this->set(compact('accountingEntries'));
+       
+
+        $accountingEntry = $this->AccountingEntries->newEmptyEntity();
+
+        if ($this->request->is('post')) {
+
+            $accountingEntry = $this->AccountingEntries->patchEntity($accountingEntry, $this->request->getData());
+ 
+            if($this->request->getData('event_id')== -1){
+                $accountingEntry->event_id = null;
+            }
+            $accountingEntry->association_id = $current_user->association_id;
+            $accountingEntry->created = (new \DateTime()) ;
+            //dd($accountingEntry);
+            //dd($this->AccountingEntries->save($accountingEntry));
+            if ($this->AccountingEntries->save($accountingEntry)) {
+                $this->Flash->success(__('The accounting entry has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The accounting entry could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('accountingEntry'));
     }
 
     /**
@@ -46,17 +104,8 @@ class AccountingEntriesController extends AppController
      */
     public function add()
     {
-        $accountingEntry = $this->AccountingEntries->newEmptyEntity();
-        if ($this->request->is('post')) {
-            $accountingEntry = $this->AccountingEntries->patchEntity($accountingEntry, $this->request->getData());
-            if ($this->AccountingEntries->save($accountingEntry)) {
-                $this->Flash->success(__('The accounting entry has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('The accounting entry could not be saved. Please, try again.'));
-        }
-        $this->set(compact('accountingEntry'));
+        
     }
 
     /**

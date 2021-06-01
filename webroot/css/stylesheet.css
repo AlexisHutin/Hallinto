@@ -14,6 +14,7 @@
   --orange70: #DD9C88; 
   --orange80: #E9BDAF; 
 
+  --grey60:#8896AA;
   --grey70:#A6B0BF;
   --grey90:#E1E5EA;
 
@@ -31,6 +32,10 @@
 
 .orange-font{
   color:var(--orange50)!important;
+}
+
+.grey-font{
+  color:var(--grey60)!important;
 }
 
 .purple-background{
@@ -139,8 +144,9 @@ body{
   height:50px;
 }
 
-tbody{
+.table-responsive{
   border-radius: 15px;
+  border:2px solid #E1E5EA;
 }
 
 li{
@@ -241,6 +247,22 @@ a:active{
 }
 
 /*************
+    Modals
+*************/
+.modal-dialog{
+  width:500px;
+}
+
+/*************
+  table
+*************/
+
+.table td, .table th{
+  border:0;
+}
+
+
+/*************
     Navbar
 *************/
 /*.sticky-top{
@@ -308,6 +330,7 @@ a:active{
 #dashboard .list-group-item{
   border:none;
 }
+
 
 /*************
   Animations

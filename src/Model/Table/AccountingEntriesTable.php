@@ -12,6 +12,7 @@ use Cake\Validation\Validator;
  * AccountingEntries Model
  *
  * @property \App\Model\Table\AssociationsTable&\Cake\ORM\Association\BelongsTo $Associations
+ * @property \App\Model\Table\AccountingEntryTypeTable&\Cake\ORM\Association\BelongsTo $AccountingEntryType
  * @property \App\Model\Table\EventsTable&\Cake\ORM\Association\BelongsTo $Events
  *
  * @method \App\Model\Entity\AccountingEntry newEmptyEntity()
@@ -43,8 +44,8 @@ class AccountingEntriesTable extends Table
         parent::initialize($config);
 
         $this->setTable('accounting_entries');
-        $this->setDisplayField('id_accounting_entries');
-        $this->setPrimaryKey('id_accounting_entries');
+        $this->setDisplayField('id');
+        $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
 

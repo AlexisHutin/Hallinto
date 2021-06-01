@@ -26,7 +26,7 @@ class AccountingEntriesTableTest extends TestCase
     protected $fixtures = [
         'app.AccountingEntries',
         'app.Associations',
-        'app.TypeOfAccountingEntries',
+        'app.AccountingEntryType',
         'app.Events',
     ];
 

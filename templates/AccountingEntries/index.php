@@ -4,51 +4,67 @@
  * @var \App\Model\Entity\AccountingEntry[]|\Cake\Collection\CollectionInterface $accountingEntries
  */
 ?>
-<div class="accountingEntries index content">
-    <?= $this->Html->link(__('New Accounting Entry'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Accounting Entries') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('association_id') ?></th>
-                    <th><?= $this->Paginator->sort('type_of_accounting_entry_id') ?></th>
-                    <th><?= $this->Paginator->sort('event_id') ?></th>
-                    <th><?= $this->Paginator->sort('amount') ?></th>
-                    <th><?= $this->Paginator->sort('created_on') ?></th>
-                    <th><?= $this->Paginator->sort('updated_on') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($accountingEntries as $accountingEntry): ?>
-                <tr>
-                    <td><?= $this->Number->format($accountingEntry->id) ?></td>
-                    <td><?= $this->Number->format($accountingEntry->association_id) ?></td>
-                    <td><?= $this->Number->format($accountingEntry->type_of_accounting_entry_id) ?></td>
-                    <td><?= $this->Number->format($accountingEntry->event_id) ?></td>
-                    <td><?= $this->Number->format($accountingEntry->amount) ?></td>
-                    <td><?= h($accountingEntry->created_on) ?></td>
-                    <td><?= h($accountingEntry->updated_on) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $accountingEntry->id_accounting_entries]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $accountingEntry->id_accounting_entries]) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $accountingEntry->id_accounting_entries], ['confirm' => __('Are you sure you want to delete # {0}?', $accountingEntry->id_accounting_entries)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+<div class="row h-100">
+  <?= $this->Element('nav') ?>
+  <div class="col-10 p-0">
+    <div id="accounting" class="pb-4 accountingEntries index content">
+        <div class="jumbotron jumbotron-fluid p-3 mb-2">
+            <div class="row px-2 mx-1">
+            <h1 class="th1-1">Comptabilité</h1>
+            </div>
+        </div>
+        <div class="container-fluid text-center">
+            <div class="row mx-2 justify-content-end">
+                <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addComptaModal">
+                Ajouter une opération comptabilité
+                </button>
+                <!--<?= $this->Html->link(__('New Accounting Entry'), ['action' => 'add'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>-->
+                <button id="downloadRecapAccounting" class="btn button-full mx-2 icon-download">Télécharger un relevé des opérations</button>
+            </div>
+        </div>
+        <div class="container-fluid boxes">
+            <div class="row mt-5 mx-0" >
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead >
+                                <tr>
+                                    <th scope="col"></th>
+                                    <th scope="col">Reason</th>
+                                    <th scope="col">Amount</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+                                <?php foreach ($accountingEntries as $accountingEntry): ?>
+                                <tr>
+                                    <td class="py-4 px-1 text-center" ><?= $this->AccountingEntries->displayGiftIcon($accountingEntry) ?></td>
+                                    <td>
+                                        <span><?= $accountingEntry->reason ?></span><br>
+                                        <?= $this->AccountingEntries->displayEntryType($accountingEntry) ?>
+                                    </td>
+                                    <?= $this->AccountingEntries->displayContentCell($accountingEntry) ?>
+                                    <td><?= $accountingEntry->created?></td>
+                                    <td class="actions">
+                                        <?= $this->Html->link(__(''), ['action' => 'edit', $accountingEntry->id_accounting_entries],['class'=>'icon-edit px-2']) ?>
+                                        <?= $this->Form->postLink(__('X'), ['action' => 'delete', $accountingEntry->id_accounting_entries],['class'=>'px-2'], ['confirm' => __('Are you sure you want to delete # {0}?', $accountingEntry->id_accounting_entries)]) ?>
+                                    </td>
+                                </tr>
+                                <?php endforeach; ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<?php
+
+echo $this->element('Pages/modal',['modalType' =>'addComptaModal']);
+
+?>

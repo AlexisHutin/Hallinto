@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\UsersTable;
+use App\Model\Table\AccountingEntryTypeTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\UsersTable Test Case
+ * App\Model\Table\AccountingEntryTypeTable Test Case
  */
-class UsersTableTest extends TestCase
+class AccountingEntryTypeTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\UsersTable
+     * @var \App\Model\Table\AccountingEntryTypeTable
      */
-    protected $Users;
+    protected $AccountingEntryType;
 
     /**
      * Fixtures
@@ -24,9 +24,8 @@ class UsersTableTest extends TestCase
      * @var array
      */
     protected $fixtures = [
-        'app.Users',
-        'app.Associations',
-        'app.Roles',
+        'app.AccountingEntryType',
+        'app.AccountingEntries',
     ];
 
     /**
@@ -37,8 +36,8 @@ class UsersTableTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Users') ? [] : ['className' => UsersTable::class];
-        $this->Users = $this->getTableLocator()->get('Users', $config);
+        $config = $this->getTableLocator()->exists('AccountingEntryType') ? [] : ['className' => AccountingEntryTypeTable::class];
+        $this->AccountingEntryType = $this->getTableLocator()->get('AccountingEntryType', $config);
     }
 
     /**
@@ -48,7 +47,7 @@ class UsersTableTest extends TestCase
      */
     public function tearDown(): void
     {
-        unset($this->Users);
+        unset($this->AccountingEntryType);
 
         parent::tearDown();
     }
@@ -59,16 +58,6 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
