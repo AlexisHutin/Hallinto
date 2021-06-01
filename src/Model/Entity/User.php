@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Authentication\PasswordHasher\DefaultPasswordHasher;
 
 /**
  * User Entity
@@ -21,6 +20,9 @@ use Authentication\PasswordHasher\DefaultPasswordHasher;
  * @property \Cake\I18n\FrozenTime|null $updated
  * @property string|null $image_name
  * @property string|null $image_path
+ *
+ * @property \App\Model\Entity\Association $association
+ * @property \App\Model\Entity\Role $role
  */
 class User extends Entity
 {
@@ -45,6 +47,8 @@ class User extends Entity
         'updated' => true,
         'image_name' => true,
         'image_path' => true,
+        'association' => true,
+        'role' => true,
     ];
 
     /**
@@ -55,11 +59,4 @@ class User extends Entity
     protected $_hidden = [
         'password',
     ];
-
-    protected function _setPassword(string $password)
-    {
-        if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher())->hash($password);
-        }
-    }
 }

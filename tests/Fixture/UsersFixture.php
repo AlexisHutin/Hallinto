@@ -30,13 +30,13 @@ class UsersFixture extends TestFixture
         'image_name' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         'image_path' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'utf8_general_ci', 'comment' => '', 'precision' => null],
         '_indexes' => [
-            'association_id' => ['type' => 'index', 'columns' => ['association_id'], 'length' => []],
             'role_id' => ['type' => 'index', 'columns' => ['role_id'], 'length' => []],
+            'association_id' => ['type' => 'index', 'columns' => ['association_id'], 'length' => []],
         ],
         '_constraints' => [
             'primary' => ['type' => 'primary', 'columns' => ['id'], 'length' => []],
-            'users_ibfk_2' => ['type' => 'foreign', 'columns' => ['role_id'], 'references' => ['roles', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
-            'users_ibfk_1' => ['type' => 'foreign', 'columns' => ['association_id'], 'references' => ['associations', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'users_ibfk_2' => ['type' => 'foreign', 'columns' => ['association_id'], 'references' => ['associations', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
+            'users_ibfk_1' => ['type' => 'foreign', 'columns' => ['role_id'], 'references' => ['roles', 'id'], 'update' => 'restrict', 'delete' => 'restrict', 'length' => []],
         ],
         '_options' => [
             'engine' => 'InnoDB',
@@ -61,8 +61,8 @@ class UsersFixture extends TestFixture
                 'password' => 'Lorem ipsum dolor sit amet',
                 'association_id' => 1,
                 'role_id' => 1,
-                'created' => '2021-04-09 12:38:59',
-                'updated' => '2021-04-09 12:38:59',
+                'created' => '2021-05-05 09:22:04',
+                'updated' => '2021-05-05 09:22:04',
                 'image_name' => 'Lorem ipsum dolor sit amet',
                 'image_path' => 'Lorem ipsum dolor sit amet',
             ],
