@@ -4,53 +4,74 @@
  * @var \App\Model\Entity\Statistic[]|\Cake\Collection\CollectionInterface $statistics
  */
 ?>
-           <?= $this->Html->link(__('New Statistic'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-            <h3><?= __('Statistics') ?></h3>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><?= $this->Paginator->sort('id') ?></th>
-                            <th><?= $this->Paginator->sort('association_id') ?></th>
-                            <th><?= $this->Paginator->sort('statistics_type_id') ?></th>
-                            <th><?= $this->Paginator->sort('data') ?></th>
-                            <th><?= $this->Paginator->sort('created') ?></th>
-                            <th><?= $this->Paginator->sort('updated') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($statistics as $statistic): ?>
-                        <tr>
-                            <td><?= $this->Number->format($statistic->id) ?></td>
-                            <td><?= $statistic->has('association') ? $this->Html->link($statistic->association->name, ['controller' => 'Associations', 'action' => 'view', $statistic->association->id]) : '' ?></td>
-                            <td><?= $statistic->has('statistics_type') ? $this->Html->link($statistic->statistics_type->id, ['controller' => 'StatisticsType', 'action' => 'view', $statistic->statistics_type->id]) : '' ?></td>
-                            <td><?= h($statistic->data) ?></td>
-                            <td><?= h($statistic->created) ?></td>
-                            <td><?= h($statistic->updated) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['action' => 'view', $statistic->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['action' => 'edit', $statistic->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $statistic->id], ['confirm' => __('Are you sure you want to delete # {0}?', $statistic->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+<div class="row h-100">
+    <?= $this->Element('nav') ?>
+    <div class="col-10 p-0">
+        <div id="stats" class="pb-4 accountingEntries index content">
+            <div class="jumbotron jumbotron-fluid p-3 mb-2">
+                <div class="row px-2 mx-1">
+                <h1 class="th1-1">Statistiques</h1>
+                </div>
             </div>
-            <div class="paginator">
-                <ul class="pagination">
-                    <?= $this->Paginator->first('<< ' . __('first')) ?>
-                    <?= $this->Paginator->prev('< ' . __('previous')) ?>
-                    <?= $this->Paginator->numbers() ?>
-                    <?= $this->Paginator->next(__('next') . ' >') ?>
-                    <?= $this->Paginator->last(__('last') . ' >>') ?>
-                </ul>
-                <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        
+            <div class="container-fluid boxes">
+                <div class="row mt-5 mx-0" >
+                    <div class="col-12 p-2 grey-border rounded-corners">
+                        <h2 class="th2-2">Solde opérations comptable</h2>
+                        <div class="col-12 p-0 stats chart-container">
+                            <canvas id="ComptaChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="col-6 mt-3 p-2 grey-border rounded-corners">
+                    <h2 class="th2-2">Nombre des membres</h2>
+                        <div class="row d-flex justify-content-center">
+                            <div class="col-3 grey-border rounded-corners text-center">
+                            235<br>
+                            + 25 ce mois ci
+                            </div>
+                            <div class="col-4 grey-border rounded-corners text-center">
+                            235<br>
+                            maximum atteint
+                            </div>
+                            <div class="col-4 grey-border rounded-corners text-center">
+                            235 / 500<br>
+                            prochain pallier de membres
+                            </div>
+                        </div>
+                        <div class="col-12 pt-5">
+                        <canvas id="MembresChart" ></canvas>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="col-12 mt-3 p-2 grey-border rounded-corners">
+                        <h2 class="th2-2">Communauté</h2>
+                        <div class="row">
+                        <div class="col-6">
+                            <canvas id="communityChart1"></canvas>
+                        </div>
+                        <div class="col-6">
+                            <canvas id="communityChart2"></canvas>
+                        </div>
+                        </div>
+                        </div>
+                        <div class="col-12 mt-3 p-2 grey-border rounded-corners">
+                        <h2 class="th2-2">Type d'évenements organisés</h2>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </div>
+<script>
+let data = <?= $amounts ?>;
+let labels = <?= $operations ?>;
 
+let months=["Janvier","Février","Mars","Avril","Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Decembre"];
+let currentMonth=new Date().getMonth()
+
+
+</script>
 <?= $this->Html->script(['Statistics/comptaChart']) ?>
+<?= $this->Html->script(['Statistics/membresChart']) ?>
+<?= $this->Html->script(['Statistics/statsCommunityDoughnut']) ?>
