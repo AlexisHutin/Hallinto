@@ -43,7 +43,7 @@
                   <p class="display-5 mb-0">Solde opérations comptables</p>
               </div>
               <div class="col-12 p-0 dashboard chart-container">
-                <canvas id="dashboardChart" data-amounts='<?=$amounts?>'></canvas>
+                <canvas id="dashboardChart"></canvas>
               </div>
             </div>
           </div>
@@ -123,10 +123,12 @@
                         <tr>
                           <td scope='row' class='text-left'> <?=$recentEntry['reason']?></td>
                           <?php 
-                            if($recentEntry['accounting_entry_type_id'] == 2){?>
+                            if($recentEntry['accounting_entry_type_id'] == 2 ){?>
                               <td scope='row' class='text-right orange-font'>-<?=$recentEntry['amount']?></td>
                           <?php
-                            }elseif($recentEntry['accounting_entry_type_id'] == 1){?>
+                            }elseif($recentEntry['accounting_entry_type_id'] == 1
+                            || $recentEntry['accounting_entry_type_id'] == 3
+                            || $recentEntry['accounting_entry_type_id'] == 4){?>
                               <td scope='row' class='text-right purple-font'>+<?=$recentEntry['amount']?></td>
                           <?php
                             }
