@@ -18,8 +18,8 @@
                 <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addComptaModal">
                 Ajouter une opération comptabilité
                 </button>
-                <!--<?= $this->Html->link(__('New Accounting Entry'), ['action' => 'add'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>-->
-                <button id="downloadRecapAccounting" class="btn button-full mx-2 icon-download">Télécharger un relevé des opérations</button>
+               
+                <?= $this->Html->link(__('Télécharger un relevé des opérations'), ['action' => 'exportCompta'], ['class' => 'btn button-full mx-2 icon-download']) ?>
             </div>
         </div>
         <div class="container-fluid boxes">
