@@ -10,7 +10,7 @@
       <div class="container-fluid text-center">
         <div class="row mx-2 justify-content-end">
           <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addMemberModal">
-            Ajouter un membre
+            Ajouter un adhérent
           </button>
           <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addComptaModal">
             Ajouter une opération comptabilité
