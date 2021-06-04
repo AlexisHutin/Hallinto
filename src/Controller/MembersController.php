@@ -28,7 +28,7 @@ class MembersController extends AppController
             $members = $this->Members->find()
                 ->contain('Associations')
                 ->where([
-                    'association_id' => $current_user->association_id,
+                    'association_id IS NOT' => $current_user->association_id,
                 ]);
         }
         $this->set(compact('members'));
