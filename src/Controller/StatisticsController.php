@@ -17,9 +17,56 @@ class StatisticsController extends AppController
      */
     public function index()
     {
-        $statistics = $this->paginate($this->Statistics);
+        /*$statistics = $this->paginate($this->Statistics);
 
-        $this->set(compact('statistics'));
+        $this->set(compact('statistics'));*/
+
+        $current_user = $this->Authentication->getIdentity();
+        $current_asso = $current_user->association_id;
+
+        $this->loadModel('AccountingEntries');
+        $query2=$this->AccountingEntries->find('all')
+                ->where([
+                    'association_id' => $current_asso,
+                    'association_id IS NOT' => null
+                    ]);
+
+        //dd($query2->toArray());
+        $this->set(compact('query2'));
+
+        $total=0;
+        $arrayAmounts = array();
+        foreach ($query2->toArray() as $amount) {
+            if($amount->accounting_entry_type_id == 2){
+                $total = $total - $amount->amount;
+                $total = round($total,2,PHP_ROUND_HALF_UP);
+                array_push($arrayAmounts, $total);
+            }elseif($amount->accounting_entry_type_id == 1
+            ||$amount->accounting_entry_type_id == 4){
+                $total = $total + $amount->amount;
+                $total = round($total,2,PHP_ROUND_HALF_UP);
+                array_push($arrayAmounts, $total);
+            }
+            
+        }
+        $this->set(compact('total'));
+
+        $arrayOperations = array();
+        foreach ($query2 as $amount) {
+            if($amount['accounting_entry_type_id'] == 2){
+                array_push($arrayOperations, '-'.$amount['amount']); 
+            }elseif($amount['accounting_entry_type_id'] == 1
+            ||$amount->accounting_entry_type_id == 4){
+                array_push($arrayOperations , '+'.$amount['amount']); 
+            }
+        }
+           
+        $amounts = json_encode($arrayAmounts);
+        $operations = json_encode($arrayOperations, JSON_NUMERIC_CHECK);
+        $this->set(compact('amounts'));
+        $this->set(compact('operations'));
+
+        //Get 
     }
 
     /**
