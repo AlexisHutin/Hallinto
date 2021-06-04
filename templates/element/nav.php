@@ -1,13 +1,13 @@
 <?php
     $pages=[
-        ['Dashboard', '','icon-home'],
-        ['Members', 'Members','icon-users'],
-        ['Événements', 'Events','icon-calendar'],
-        ['Statistiques', 'Statistics','icon-bar-chart'],
-        ['Comptabilité', 'AccountingEntries','icon-euro'],
-        ['Documents & Aide', '','icon-file-text'],
-        ['FAQ', '','icon-help-circle'],
-        ['Paramètres', '','icon-settings'],
+        ['Dashboard', '', '', 'icon-home'],
+        ['Adhérents', 'Members', 'index', 'icon-users'],
+        ['Événements', 'Events', 'index', 'icon-calendar'],
+        ['Statistiques', 'Statistics', 'index', 'icon-bar-chart'],
+        ['Comptabilité', 'AccountingEntries', 'index', 'icon-euro'],
+        ['Documents & Aide', 'Informations', 'indexDocuments', 'icon-file-text'],
+        ['FAQ', 'Informations', 'indexFaq', 'icon-help-circle'],
+        ['Paramètres', '', '', 'icon-settings'],
         
     ];
 ?>
@@ -23,8 +23,8 @@
     <ul class="m-0 p-0 d-block text-left">
     <?php foreach($pages as $item): ?>
         <li class=" d-block background-fade">
-        <i class="<?=$item[2]?> d-inline-block"></i>
-            <?= $this->Html->link( $item[0], ['controller' => $item[1], 'action' => 'index'], ['class' => 'nav-link p-2 btn rounded-0 text-left d-inline-block']) ?>
+        <i class="<?=$item[3]?> d-inline-block"></i>
+            <?= $this->Html->link( $item[0], ['controller' => $item[1], 'action' => $item[2]], ['class' => 'nav-link p-2 btn rounded-0 text-left d-inline-block']) ?>
         </li>
     <?php endforeach; ?>
         <li class=" d-block background-fade">
