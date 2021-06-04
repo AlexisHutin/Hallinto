@@ -23,9 +23,9 @@
       <div class="container-fluid boxes">
         <div class="row mt-5 mx-0" >
 
-            <div class="col-3 h-100">
-              <div class="card text-center p-2 h-100">
-                <p class="th1-1 purple-font"><?=$query1[0]['count']?></p>
+            <div class="col-3 h-270">
+              <div class="card text-center p-2 pt-5 h-100">
+                <p class="th1-1 purple-font pt-3"><?=$query1[0]['count']?></p>
                 <p class="display-5">Adhérents à ASSO</p>
               </div>
             </div>
@@ -48,21 +48,21 @@
             </div>
           </div>
 
-          <div class="col-3 h-100">
+          <div class="col-3 h-270">
               <div class="card text-center p-2 h-100">
                 <h5>Documents importants</h5>
                 <ul class="list-group">
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    DocumentAG.pdf
+                    <a href="#" >DocumentAG.pdf</a>
                   </li>
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    RécapitulatifMensuel.pdf
+                    <a href="#" >RécapitulatifMensuel.pdf</a>
                   </li>
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    DocumentEtatDesLieux.pdf
+                    <a href="#" >DocumentEtatDesLieux.pdf</a>
                   </li>
                 </ul>
               </div>
