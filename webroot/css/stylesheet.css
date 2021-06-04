@@ -321,7 +321,6 @@ a:active{
   font-weight:400;
 }
 
-
 #dashboard .table .text-right{
   font-weight:700;
 }
@@ -329,6 +328,10 @@ a:active{
 #dashboard .list-group,
 #dashboard .list-group-item{
   border:none;
+}
+
+.h-270{
+  height:270px;
 }
 
 
@@ -347,6 +350,15 @@ a:active{
     Charts
 *************/
 
+canvas{
+  padding-bottom:30px;
+}
+
 .dashboard.chart-container{
+  height:200px;
   bottom:-15px;
+}
+
+.stats.chart-container{
+  height:300px;
 }
