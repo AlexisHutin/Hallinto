@@ -151,4 +151,30 @@ class AccountingEntriesController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function exportCompta(){
+        $this->response = $this->response->withDownload('compta.csv');
+        $compta = $this->AccountingEntries->find();
+
+        $header=[
+        'association_id',
+        'accounting_entry_type_id',
+        'event_id',
+        'amount',
+        'reason',
+        'created',
+        'updated',
+        'association',
+        'accounting_entry_type',
+        'event',
+        ];
+
+        $this->set(compact('compta'));
+        $this->viewBuilder()
+            ->setClassName('CsvView.Csv')
+            ->setOptions([
+            'serialize'=>'compta',
+            'header'=>$header
+            ]);
+    }
 }
