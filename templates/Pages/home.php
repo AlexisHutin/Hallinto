@@ -90,7 +90,12 @@
                 <h5><?=$query4[0]->events[0]->event_name?></h5>
                 <p><?=$query4[0]->events[0]->location?></p>
                 <p><?=$query4[0]->events[0]->start_date?></p>
-                <p>NOMBRE PARTICIPANTS</p>
+                <p>
+                <?php if($query4[0]->events[0]->participation_number == null){
+                    echo("0");
+                }else{ 
+                  $query4[0]->events[0]->participation_number; 
+                }?> participants</p>
               </div>
             </div>
             <div class="row m-2">
@@ -108,7 +113,12 @@
               <h5><?=$query4[0]->events[1]->event_name?></h5>
                 <p><?=$query4[0]->events[1]->location?></p>
                 <p><?=$query4[0]->events[1]->start_date?></p>
-                <p>NOMBRE PARTICIPANTS</p>
+                <p>
+                <?php if($query4[0]->events[0]->participation_number == null){
+                    echo("0");
+                }else{ 
+                  $query4[0]->events[0]->participation_number; 
+                }?> participants</p>
               </div>
             </div>  
           </div>
@@ -156,7 +166,6 @@ echo $this->element('Pages/modal',['modalType' =>'addEventModal']);*/
 
 <script>
 let data = <?= $amounts ?>
-
 </script>
 
 <?= $this->Html->script(['Pages/dashboardChart']) ?>
