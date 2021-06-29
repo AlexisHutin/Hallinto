@@ -228,6 +228,10 @@ a:active{
   color:var(--purple40);
 }
 
+.nav-link{
+  width:90%;
+}
+
 /*************
     inputs
 *************/
