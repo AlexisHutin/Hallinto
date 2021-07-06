@@ -1,6 +1,6 @@
 <?php
     $pages=[
-        ['Dashboard', '', '', 'icon-home'],
+        ['Dashboard', 'Pages', 'home', 'icon-home'],
         ['Adhérents', 'Members', 'index', 'icon-users'],
         ['Événements', 'Events', 'index', 'icon-calendar'],
         ['Statistiques', 'Statistics', 'index', 'icon-bar-chart'],

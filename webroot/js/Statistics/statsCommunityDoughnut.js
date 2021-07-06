@@ -1,52 +1,67 @@
-var ctx = document.getElementById("communityChart1");
-var myChart = new Chart(ctx, {
-  type: 'doughnut',
-  data: {
-    labels: [],
-    datasets: [{
-      label: '# of Tomatoes',
-      data: [12, 19, 3, 5],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
+var gradient = ctx.createLinearGradient(0, 0, 0, 300);
+gradient.addColorStop(0, '#CF7255');   
+gradient.addColorStop(1, '#6E50AF');
 
+var ctx = document.getElementById("communityChart1");
+var myPieChart = new Chart(ctx,{
+  type: 'doughnut',
+  
+  data: {
+    datasets: [{
+      data: [35,65],
+      backgroundColor: [gradient,'rgb(225,229,234)']
+    }],
+
+  },
+  options: {
+    cutoutPercentage:70,
+    tooltips: {
+      enabled: false,
+    },
+    plugins: {
+      doughnutlabel: {
+        labels: [{
+          text: '550',
+          font: {
+            size: 20,
+            weight: 'bold'
+          }
+        }, {
+          text: 'total'
+        }]
+      }
+    }
+  }
 });
 
-
-var ctx2 = document.getElementById("communityChart2");
-var myChart2 = new Chart(ctx2, {
+var ctx = document.getElementById("communityChart2");
+var myPieChart = new Chart(ctx,{
   type: 'doughnut',
+  
   data: {
-    labels: [],
     datasets: [{
-      label: '# of Tomatoes',
-      data: [12, 19, 3, 5],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.5)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255,99,132,1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)'
-      ],
-      borderWidth: 1
-    }]
-  },
+      data: [65,35],
+      backgroundColor: [gradient,'rgb(225,229,234)']
+    }],
 
+  },
+  options: {
+    cutoutPercentage:70,
+    tooltips: {
+      enabled: false,
+    },
+    plugins: {
+      doughnutlabel: {
+        labels: [{
+          text: '550',
+          font: {
+            size: 20,
+            weight: 'bold'
+          }
+        }, {
+          text: 'total'
+        }]
+      }
+    }
+  }
 });

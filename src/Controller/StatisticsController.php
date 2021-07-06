@@ -36,6 +36,7 @@ class StatisticsController extends AppController
 
         $total=0;
         $arrayAmounts = array();
+        $dates = array();
         foreach ($query2->toArray() as $amount) {
             if($amount->accounting_entry_type_id == 2){
                 $total = $total - $amount->amount;
@@ -46,10 +47,12 @@ class StatisticsController extends AppController
                 $total = $total + $amount->amount;
                 $total = round($total,2,PHP_ROUND_HALF_UP);
                 array_push($arrayAmounts, $total);
-            }
-            
+            }   
+            array_push($dates,$amount->created);
         }
         $this->set(compact('total'));
+        $datesJson = json_encode($dates);
+        $this->set(compact('datesJson'));
 
         $arrayOperations = array();
         foreach ($query2 as $amount) {

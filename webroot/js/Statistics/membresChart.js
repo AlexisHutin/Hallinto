@@ -8,7 +8,7 @@ gradient.addColorStop(1, '#6E50AF');
 var dashboardChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: months.slice(currentMonth-6).concat(months.slice(0,currentMonth)),
+        labels: pastMonths,
         datasets: [{
             data: [1,2,3,4,5,6],
             barThickness:25,
