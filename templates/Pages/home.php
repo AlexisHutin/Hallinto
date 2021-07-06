@@ -54,15 +54,15 @@
                 <ul class="list-group">
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    <a href="#" >DocumentAG.pdf</a>
+                    <a href="/webroot/docs/file.pdf" download>DocumentAG.pdf</a>
                   </li>
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    <a href="#" >RécapitulatifMensuel.pdf</a>
+                    <a href="/webroot/docs/file.pdf" download>RécapitulatifMensuel.pdf</a>
                   </li>
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    <a href="#" >DocumentEtatDesLieux.pdf</a>
+                    <a href="/webroot/docs/file.pdf" download>DocumentEtatDesLieux.pdf</a>
                   </li>
                 </ul>
               </div>
