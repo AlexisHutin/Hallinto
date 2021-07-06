@@ -13,6 +13,7 @@
   --orange60:#CF7255;
   --orange70: #DD9C88; 
   --orange80: #E9BDAF; 
+  --orange90: #F4DED7; 
 
   --grey60:#8896AA;
   --grey70:#A6B0BF;
@@ -42,8 +43,13 @@
   background-color:var(--purple70)!important;
 }
 
+
 .orange-background{
   background-color:var(--orange70)!important;
+}
+
+.orange90-background{
+  background-color:var(--orange90)!important;
 }
 
 .beige-background{
@@ -52,6 +58,10 @@
 
 .white-background{
   background-color:var(--white)!important;
+}
+
+.grey-background{
+  background-color: #FCFAFA;
 }
 
 /*********************
@@ -182,6 +192,11 @@ li{
   border:2px solid #e5e5e5;
 }
 
+.box-shadow{
+  box-shadow: 0 0 10px #aaa!important;
+}
+
+
 /*************
     buttons
 *************/
@@ -229,7 +244,7 @@ a:active{
 }
 
 .nav-link{
-  width:90%;
+  /* width:90%; */
 }
 
 /*************
@@ -369,4 +384,51 @@ canvas{
 
 .stats.chart-container{
   height:300px;
+}
+
+#communityChart1,
+#communityChart2,
+#eventChart1,
+#eventChart2,
+#eventChart3,
+#eventChart4
+{
+  padding:15px 0;
+  height:auto!important;
+}
+.donut-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  text-align: center; 
+}
+.donut-inner h5 {
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+.donut-inner span {
+  font-size: 12px;
+}
+
+/************************
+    Documents & Aide
+************************/
+
+.pdf-img{
+  width:20px;
+}
+
+#docuementsHelp .card{
+  border:none;
+  border-radius:15px;
+}
+
+#documentsHelp .card-group .card-body,
+#documentsHelp .card-group .card-body .white-background{
+  border-radius:15px;
+}
+
+#documentsHelp .card-footer{
+  background-color:#FAF7F7;
 }
