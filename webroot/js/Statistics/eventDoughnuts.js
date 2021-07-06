@@ -14,7 +14,7 @@ var myPieChart = new Chart(ctx,{
 
   },
   options: {
-    cutoutPercentage:70,
+    cutoutPercentage:40,
     tooltips: {
       enabled: false,
     },
@@ -46,7 +46,7 @@ var myPieChart = new Chart(ctx,{
 
   },
   options: {
-    cutoutPercentage:70,
+    cutoutPercentage:40,
     tooltips: {
       enabled: false,
     },
@@ -78,7 +78,7 @@ var myPieChart = new Chart(ctx,{
 
   },
   options: {
-    cutoutPercentage:70,
+    cutoutPercentage:40,
     tooltips: {
       enabled: false,
     },
@@ -110,7 +110,7 @@ var myPieChart = new Chart(ctx,{
 
   },
   options: {
-    cutoutPercentage:70,
+    cutoutPercentage:40,
     tooltips: {
       enabled: false,
     },

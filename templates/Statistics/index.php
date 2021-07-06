@@ -66,38 +66,38 @@
                         </div>
                         <div class="col-12 mt-3 p-2 grey-border rounded-corners">
                         <h2 class="th2-2">Type d'évenements organisés</h2>
-                            <div class="row">
+                            <div class="row text-center">
                                 <div class="col-3">
-                                    <!-- <div class="donut-inner">
+                                <canvas id="eventChart1">  
+                                    </canvas>
+                                    <div class="">
                                         <h5>5%</h5>
                                         <span>Loisirs</span>
-                                    </div> -->
-                                    <canvas id="eventChart1">  
-                                    </canvas>
+                                    </div> 
                                 </div>
                                 <div class="col-3">
-                                    <!-- <div class="donut-inner">
-                                        <h5>50%</h5>
-                                        <span>soirées étudiantes</span>
-                                    </div> -->
                                     <canvas id="eventChart2">  
                                     </canvas>
+                                    <div class="">
+                                        <h5>50%</h5>
+                                        <span>soirées étudiantes</span>
+                                    </div>
                                 </div>
                                 <div class="col-3">
-                                    <!-- <div class="donut-inner">
-                                        <h5>35%</h5>
-                                        <span>LPro</span>
-                                    </div> -->
                                     <canvas id="eventChart3">  
                                     </canvas>
+                                    <div class="">
+                                        <h5>35%</h5>
+                                        <span>LPro</span>
+                                    </div>
                                 </div>
                                 <div class="col-3">
-                                    <!-- <div class="donut-inner">
-                                        <h5>10%</h5>
-                                        <span>Autres</span>
-                                    </div> -->
                                     <canvas id="eventChart4">  
                                     </canvas>
+                                    <div class="">
+                                        <h5>10%</h5>
+                                        <span>Autres</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
