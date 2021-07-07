@@ -158,10 +158,10 @@
 </div>
 
 <?php
-/*
+
 echo $this->element('Pages/modal',['modalType' =>'addMemberModal']);
 echo $this->element('Pages/modal',['modalType' =>'addComptaModal']);
-echo $this->element('Pages/modal',['modalType' =>'addEventModal']);*/
+echo $this->element('Pages/modal',['modalType' =>'addEventModal']);
 ?>
 
 <script>

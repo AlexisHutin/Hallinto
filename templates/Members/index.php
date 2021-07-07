@@ -19,7 +19,9 @@
                 <div class="row mx-2 justify-content-end">
                     <?= $this->Html->link(__('Exporter liste des adhérents'), ['action' => 'exportMembers'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>
                     <?= $this->Html->link(__('Importer liste des adhérents'), ['action' => 'importMembers'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>
-                    <?= $this->Html->link(__('Ajouter un adhérent'), ['action' => 'add'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>
+                    <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addMemberModal">
+                        Ajouter un adhérent
+                    </button>
                 </div>
             </div>
 
@@ -41,9 +43,6 @@
                                 <tbody>
                                     <?php foreach ($members as $member) : ?>
                                         <tr>
-
-                                            <?= $entry->type = 1 ? '+' : '-' ?>
-
                                             <td><?= h($member->first_name) ?></td>
                                             <td><?= h($member->last_name) ?></td>
                                             <?php if ($member->contribution_is_paid) : ?>
@@ -68,3 +67,5 @@
         </div>
     </div>
 </div>
+
+<?= $this->element('Pages/modal',['modalType' =>'addMemberModal']); ?>

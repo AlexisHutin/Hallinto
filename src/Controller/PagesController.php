@@ -137,6 +137,15 @@ class PagesController extends AppController
         $query4 = $query4->toArray();
         $this->set(compact('query4'));
 
+        $this->loadModel('Events');
+        $event = $this->Events->newEmptyEntity();
+        $this->set(compact('event'));
+        
+        $this->loadModel('Members');
+        $member = $this->Members->newEmptyEntity();
+        $this->set(compact('member'));
+        
+        
         try {
             return $this->render(implode('/', $path));
         } catch (MissingTemplateException $exception) {
@@ -145,6 +154,8 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+
+        
 
     }
 

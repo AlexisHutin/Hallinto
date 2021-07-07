@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\I18n\Time;
+
 /**
  * Members Controller
  *
@@ -28,10 +30,28 @@ class MembersController extends AppController
             $members = $this->Members->find()
                 ->contain('Associations')
                 ->where([
-                    'association_id IS NOT' => $current_user->association_id,
+                    'association_id' => $current_user->association_id,
                 ]);
         }
+        $members = $members->toArray();
         $this->set(compact('members'));
+
+        $member = $this->Members->newEmptyEntity();
+        $this->set(compact('member'));
+
+        if ($this->request->is('post')) {
+            $member = $this->Members->patchEntity($member, $this->request->getData());
+            $member->association_id = $current_user->association_id;
+            $member->inscription_date = Time::now();
+
+            if ($this->Members->save($member)) {
+                $this->Flash->success(__('The member has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The member could not be saved. Please, try again.'));
+        }
+
     }
 
     /**
@@ -60,6 +80,7 @@ class MembersController extends AppController
         $member = $this->Members->newEmptyEntity();
         if ($this->request->is('post')) {
             $member = $this->Members->patchEntity($member, $this->request->getData());
+
             if ($this->Members->save($member)) {
                 $this->Flash->success(__('The member has been saved.'));
 
