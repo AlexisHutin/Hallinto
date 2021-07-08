@@ -28,7 +28,7 @@
               <i class="icon-users th1-1"></i>
               <h3 class="th3-1 orange-font py-2">Création d'association</h3>
               <p class="tx3 py-2">Comment créer une association avec Hallinto ? Retrouvez toutes nos explications sur la création d'association ici.</p>
-              <a href="#"> En savoir plus <i class="icon-log-out"></i></a>
+              <a href="#"> En savoir plus <i class="icon-arrow-forward-outline"></i></a>
             </div>
           </div>
         </div>
@@ -39,7 +39,7 @@
               <i class="icon-settings th1-1"></i>
               <h3 class="th3-1 orange-font py-2">Gestion des adhérents</h3>
               <p class="tx3 py-2">Comment ajouter une liste de membres ? Comment gérer les responsables de l’associations ? Nous répondons à toutes vos questions sur la gestion de membres.</p>
-              <a href="#"> En savoir plus <i class="icon-log-out"></i></a>
+              <a href="#"> En savoir plus <i class="icon-arrow-forward-outline"></i></a>
             </div>
           </div>
         </div>
@@ -50,7 +50,7 @@
               <i class="icon-calendar th1-1"></i>
               <h3 class="th3-1 orange-font py-2">Gestion d'évènements</h3>
               <p class="tx3 py-2">Comment créer un évènement ? Comment rentrer les informations comptables sur l’évènement ? Comment gérer les différents états de l’évènement ?</p>
-              <a href="#"> En savoir plus <i class="icon-log-out"></i></a>
+              <a href="#"> En savoir plus <i class="icon-arrow-forward-outline"></i></a>
             </div>
           </div>
         </div>
@@ -58,10 +58,10 @@
         <div class="box col-6 py-3 d-inline-block">
           <div  class="orange-border rounded-corners p-3 h-100">
             <div class="text-center">
-              <i class="icon-users th1-1"></i>
+              <i class="icon-help-circle th1-1"></i>
               <h3 class="th3-1 orange-font py-2">Utilisation de l'aide</h3>
               <p class="tx3 py-2">Comment envoyer mes fichiers pour vérification ? Qui vérifie mes fichiers ? Combien de temps dois-je attendre pour récupérer mes fichiers corrigés ?</p>
-              <a href="#"> En savoir plus <i class="icon-log-out"></i></a>
+              <a href="#"> En savoir plus <i class="icon-arrow-forward-outline"></i></a>
             </div>
           </div>
         </div>
