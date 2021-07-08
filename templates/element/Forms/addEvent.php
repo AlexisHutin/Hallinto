@@ -1,7 +1,6 @@
 <div class="eventsform form-group">
     <?= $this->Form->create($event) ?>
     <fieldset>
-      <legend><?= __('Add Event') ?></legend>
       <?php
         echo $this->Form->hidden('add_event');
         echo $this->Form->control('event_name',['class' =>'form-control','label' => 'Event name']);
