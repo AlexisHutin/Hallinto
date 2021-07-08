@@ -33,7 +33,7 @@ class AccountingEntriesController extends AppController
         $this->set(compact('type'));
 
         $this->loadModel('Events');
-        $event= $this->Events
+        $events = $this->Events
             ->find('list', [
                 'keyField' => 'id',
                 'valueField' => 'event_name'
@@ -41,7 +41,7 @@ class AccountingEntriesController extends AppController
             ->toArray();
         
  
-        $this->set(compact('event'));
+        $this->set(compact('events'));
 
         $current_user = $this->Authentication->getIdentity();
 
@@ -117,6 +117,28 @@ class AccountingEntriesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->loadModel('AccountingEntryType');
+        $type= $this->AccountingEntryType
+            ->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'type_name'
+            ])
+            ->toArray();
+        
+ 
+        $this->set(compact('type'));
+
+        $this->loadModel('Events');
+        $events = $this->Events
+            ->find('list', [
+                'keyField' => 'id',
+                'valueField' => 'event_name'
+            ])
+            ->toArray();
+        
+ 
+        $this->set(compact('events'));
+
         $accountingEntry = $this->AccountingEntries->get($id, [
             'contain' => [],
         ]);

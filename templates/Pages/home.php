@@ -23,9 +23,9 @@
       <div class="container-fluid boxes">
         <div class="row mt-5 mx-0" >
 
-            <div class="col-3 h-270">
+            <div class="col-3">
               <div class="card text-center p-2 pt-5 h-100">
-                <p class="th1-1 purple-font pt-3"><?=$query1[0]['count']?></p>
+                <p class="th1-1 purple-font pt-5"><?=$query1[0]['count']?></p>
                 <p class="display-5">Adhérents à ASSO</p>
               </div>
             </div>
@@ -48,21 +48,21 @@
             </div>
           </div>
 
-          <div class="col-3 h-270">
+          <div class="col-3">
               <div class="card text-center p-2 h-100">
                 <h5>Documents importants</h5>
                 <ul class="list-group">
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    <a href="#" >DocumentAG.pdf</a>
+                    <a href="/webroot/docs/file.pdf" download>DocumentAG.pdf</a>
                   </li>
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    <a href="#" >RécapitulatifMensuel.pdf</a>
+                    <a href="/webroot/docs/file.pdf" download>RécapitulatifMensuel.pdf</a>
                   </li>
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
-                    <a href="#" >DocumentEtatDesLieux.pdf</a>
+                    <a href="/webroot/docs/file.pdf" download>DocumentEtatDesLieux.pdf</a>
                   </li>
                 </ul>
               </div>
@@ -90,7 +90,12 @@
                 <h5><?=$query4[0]->events[0]->event_name?></h5>
                 <p><?=$query4[0]->events[0]->location?></p>
                 <p><?=$query4[0]->events[0]->start_date?></p>
-                <p>NOMBRE PARTICIPANTS</p>
+                <p>
+                <?php if($query4[0]->events[0]->participation_number == null){
+                    echo("0");
+                }else{ 
+                  $query4[0]->events[0]->participation_number; 
+                }?> participants</p>
               </div>
             </div>
             <div class="row m-2">
@@ -108,7 +113,12 @@
               <h5><?=$query4[0]->events[1]->event_name?></h5>
                 <p><?=$query4[0]->events[1]->location?></p>
                 <p><?=$query4[0]->events[1]->start_date?></p>
-                <p>NOMBRE PARTICIPANTS</p>
+                <p>
+                <?php if($query4[0]->events[0]->participation_number == null){
+                    echo("0");
+                }else{ 
+                  $query4[0]->events[0]->participation_number; 
+                }?> participants</p>
               </div>
             </div>  
           </div>
@@ -148,15 +158,14 @@
 </div>
 
 <?php
-/*
+
 echo $this->element('Pages/modal',['modalType' =>'addMemberModal']);
 echo $this->element('Pages/modal',['modalType' =>'addComptaModal']);
-echo $this->element('Pages/modal',['modalType' =>'addEventModal']);*/
+echo $this->element('Pages/modal',['modalType' =>'addEventModal']);
 ?>
 
 <script>
 let data = <?= $amounts ?>
-
 </script>
 
 <?= $this->Html->script(['Pages/dashboardChart']) ?>

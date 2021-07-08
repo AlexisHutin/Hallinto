@@ -13,6 +13,7 @@
   --orange60:#CF7255;
   --orange70: #DD9C88; 
   --orange80: #E9BDAF; 
+  --orange90: #F4DED7; 
 
   --grey60:#8896AA;
   --grey70:#A6B0BF;
@@ -20,6 +21,7 @@
 
   --white:#ffffff;
   --beige: #FDFAF9;
+  --beige2:#FAF7F7;
 }
 
 .white-font{
@@ -46,12 +48,24 @@
   background-color:var(--orange70)!important;
 }
 
+.orange90-background{
+  background-color:var(--orange90)!important;
+}
+
 .beige-background{
   background-color:var(--beige)!important; ;
 }
 
+.beige2-background{
+  background-color:var(--beige2)!important; ;
+}
+
 .white-background{
   background-color:var(--white)!important;
+}
+
+.grey-background{
+  background-color: #FCFAFA;
 }
 
 /*********************
@@ -167,6 +181,11 @@ li{
   border: 2px solid #E1E5EA;
 }
 
+.card-footer{
+  border:none;
+  background:transparent;
+}
+
 .horizontal-center{
   position:absolute;
   top:50%;
@@ -181,6 +200,11 @@ li{
 .grey-border{
   border:2px solid #e5e5e5;
 }
+
+.box-shadow{
+  box-shadow: 0 0 10px #aaa!important;
+}
+
 
 /*************
     buttons
@@ -228,6 +252,10 @@ a:active{
   color:var(--purple40);
 }
 
+.nav-link{
+  /* width:90%; */
+}
+
 /*************
     inputs
 *************/
@@ -244,6 +272,15 @@ a:active{
 .input-form:focus{
   border-color: var(--orange50); 
   box-shadow:none;
+}
+
+.search{
+  border:solid 1px #E1E5EA;
+  border-radius:15px;
+}
+
+.search::placeholder{
+  color:var(--orange50);
 }
 
 /*************
@@ -330,11 +367,6 @@ a:active{
   border:none;
 }
 
-.h-270{
-  height:270px;
-}
-
-
 /*************
   Animations
 *************/
@@ -361,4 +393,51 @@ canvas{
 
 .stats.chart-container{
   height:300px;
+}
+
+#communityChart1,
+#communityChart2,
+#eventChart1,
+#eventChart2,
+#eventChart3,
+#eventChart4
+{
+  padding:15px 0;
+  height:auto!important;
+}
+.donut-inner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+  text-align: center; 
+}
+.donut-inner h5 {
+  margin-bottom: 5px;
+  margin-top: 0;
+}
+.donut-inner span {
+  font-size: 12px;
+}
+
+/************************
+    Documents & Aide
+************************/
+
+.pdf-img{
+  width:20px;
+}
+
+#docuementsHelp .card{
+  border:none;
+  border-radius:15px;
+}
+
+#documentsHelp .card-group .card-body,
+#documentsHelp .card-group .card-body .white-background{
+  border-radius:15px;
+}
+
+#documentsHelp .card-footer{
+  background-color:#FAF7F7;
 }

@@ -4,15 +4,11 @@ var ctx = document.getElementById('ComptaChart').getContext('2d');
 var dashboardChart = new Chart(ctx, {
     type: 'line',
     data: {
-        labels: data,
+        labels: datesTransform,
         datasets: [{
-            data: data,
+            data: dataAndDates,
             backgroundColor: '#A896CF',
-            // point:0,
-             pointRadius: 1,
-            // pointBackgroundColor:'#CF7255',
-            // pointBorderWidth:0,
-            borderWidth: 4,
+            borderWidth: 6,
             borderColor: '#8B73BF',
             tension: 0.3,
             fill: false,
@@ -21,29 +17,24 @@ var dashboardChart = new Chart(ctx, {
     options: {
         elements: {
             point:{
-                radius: 0
+                radius: 3,
+                pointHitRadius:3,
             }
         },
         tooltips: {
-            enabled: true
+            enabled: true,
+            backgroundColor:'#2C2046',
+            titleAlign:'center',
+            bodyAlign:'center',
+            bodyFontSize: 20,
+            mode: 'index',
+            axis: 'y',
+            callbacks: {
+                title: function() {}
+               },
        },
         legend: {
             display:false
-        },
-        scales: {
-            yAxes: [{
-                display:true,
-                ticks: {
-                    display: true
-                },
-                color:'#ffffff'
-            }],
-            xAxes: [{
-                display:false,
-                ticks: {
-                    display: true
-                }
-            }]
         },
         responsive: true,
         maintainAspectRatio: false,

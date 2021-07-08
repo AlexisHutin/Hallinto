@@ -25,11 +25,11 @@ class AccountingEntriesHelper extends Helper
 
             case 1:
                 $type="+";
-                $class="orange-font";
+                $class="purple-font";
                 break;
             case 2:
                 $type="-";
-                $class="purple-font";
+                $class="orange-font";
                 break;
             default:
             $type="~";

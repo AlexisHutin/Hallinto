@@ -2,19 +2,19 @@
 
     <div class="card-body">
 
-        <div class="row">
-            <div class="col-5 bg-info rounded text-center py-4 text-white">
+        <div class="">
+            <div class="col-5 rounded-corners text-center py-4 text-white purple-background">
                 <span class="display-2"><?= h($event->start_date->format('d')) ?></span> <br>
                 <span style="font-size: 1.3em;"><?= h($event->start_date->format('F Y')) ?></span>
             </div>
         </div>
 
-        <p class="display-4"> 
+        <h2 class="th2-1 mt-2"> 
             <?= h($event->event_name) ?>
-        </p>
-        <b style="font-size: 1.3em;">
+        </h2>
+        <p class="font-weight-bold" style="font-size: 1.3em;">
             <?= h($event->location) ?>
-        </b>
+        </p>
         <p>
             Le 
             <?= h($event->start_date->format('d-m-Y')) ?> 

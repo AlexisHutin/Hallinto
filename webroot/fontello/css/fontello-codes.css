@@ -1,5 +1,6 @@
 
 .icon-edit:before { content: '\e800'; } /* '' */
+.icon-person-add-outline:before { content: '\e800'; } /* '' */
 .icon-euro:before { content: '\e801'; } /* '' */
 .icon-file-text:before { content: '\e802'; } /* '' */
 .icon-filter:before { content: '\e803'; } /* '' */
@@ -22,3 +23,5 @@
 .icon-clock:before { content: '\e814'; } /* '' */
 .icon-users:before { content: '\e815'; } /* '' */
 .icon-download:before { content: '\e816'; } /* '' */
+.icon-dot-3:before { content: '\e817'; } /* '' */
+.icon-arrow-forward-outline:before { content: '\e818'; } /* '' */

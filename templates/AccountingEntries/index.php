@@ -47,8 +47,8 @@
                                     <?= $this->AccountingEntries->displayContentCell($accountingEntry) ?>
                                     <td><?= $accountingEntry->created?></td>
                                     <td class="actions">
-                                        <?= $this->Html->link(__(''), ['action' => 'edit', $accountingEntry->id_accounting_entries],['class'=>'icon-edit px-2']) ?>
-                                        <?= $this->Form->postLink(__('X'), ['action' => 'delete', $accountingEntry->id_accounting_entries],['class'=>'px-2'], ['confirm' => __('Are you sure you want to delete # {0}?', $accountingEntry->id_accounting_entries)]) ?>
+                                        <?= $this->Html->link(__(''), ['action' => 'edit', $accountingEntry->id],['class'=>'icon-edit px-2']) ?>
+                                        <?= $this->Form->postLink(__('X'), ['action' => 'delete', $accountingEntry->id],['class'=>'px-2'], ['confirm' => __('Are you sure you want to delete # {0}?', $accountingEntry->id_accounting_entries)]) ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
