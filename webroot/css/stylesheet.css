@@ -237,6 +237,14 @@ li{
   color:var(--grey70);
 }
 
+.button-secondary{
+  padding:10px 20px;
+  border-radius: 10px;
+  font-weight:600;
+  background-color:var(--grey60);
+  color:var(--white);
+}
+
 /*************
     links
 *************/

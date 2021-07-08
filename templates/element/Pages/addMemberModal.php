@@ -10,7 +10,7 @@
   ?>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+  <button type="button" class="btn button-secondary" data-dismiss="modal">Fermer</button>
   <?= $this->Form->button(__('Submit'),['class' =>'btn button-full']) ?>
   <?= $this->Form->end() ?>
 
