@@ -11,14 +11,14 @@
         <div id="events" class="pb-4 index content">
             <div class="jumbotron jumbotron-fluid p-3 mb-2">
                 <div class="row px-2 mx-1">
-                    <h1 class="th1-1">Évenements</h1>
+                    <h1 class="th1-1">Évènements</h1>
                 </div>
             </div>
             <div class="container-fluid text-center">
                 <div class="row mx-2 justify-content-end">
                     <!-- TODO edit link to open modal -->
                     <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addEventModal">
-                        Ajouter un évenement
+                        Ajouter un évènement
                     </button>
                     <button type="button" class="btn button-full mx-2 icon-filter">
                         Filtres

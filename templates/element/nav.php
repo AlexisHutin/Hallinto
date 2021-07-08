@@ -2,7 +2,7 @@
     $pages=[
         ['Dashboard', 'Pages', 'home', 'icon-home'],
         ['Adhérents', 'Members', 'index', 'icon-users'],
-        ['Événements', 'Events', 'index', 'icon-calendar'],
+        ['Évènements', 'Events', 'index', 'icon-calendar'],
         ['Statistiques', 'Statistics', 'index', 'icon-bar-chart'],
         ['Comptabilité', 'AccountingEntries', 'index', 'icon-euro'],
         ['Documents & Aide', 'Informations', 'indexDocuments', 'icon-file-text'],

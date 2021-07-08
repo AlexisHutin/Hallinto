@@ -80,7 +80,7 @@
                                     </canvas>
                                     <div class="">
                                         <h5>50%</h5>
-                                        <span>soirées étudiantes</span>
+                                        <span>Soirées étudiantes</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -88,7 +88,7 @@
                                     </canvas>
                                     <div class="">
                                         <h5>35%</h5>
-                                        <span>LPro</span>
+                                        <span>Pro</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
