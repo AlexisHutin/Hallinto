@@ -42,7 +42,7 @@
                         <canvas id="MembresChart" ></canvas>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 pr-0">
                         <div class="col-12 mt-3 p-2 grey-border rounded-corners">
                         <h2 class="th2-2">Communauté</h2>
                             <div class="row">
@@ -80,7 +80,7 @@
                                     </canvas>
                                     <div class="">
                                         <h5>50%</h5>
-                                        <span>soirées étudiantes</span>
+                                        <span>Soirées étudiantes</span>
                                     </div>
                                 </div>
                                 <div class="col-3">
@@ -88,7 +88,7 @@
                                     </canvas>
                                     <div class="">
                                         <h5>35%</h5>
-                                        <span>LPro</span>
+                                        <span>Pro</span>
                                     </div>
                                 </div>
                                 <div class="col-3">

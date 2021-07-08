@@ -18,7 +18,7 @@
             <div class="container-fluid text-center">
                 <div class="row mx-2 justify-content-end">
                     <?= $this->Html->link(__('Exporter liste des adhérents'), ['action' => 'exportMembers'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>
-                    <?= $this->Html->link(__('Importer liste des adhérents'), ['action' => 'importMembers'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>
+                    <?= $this->Html->link(__('Importer liste des adhérents'), ['action' => 'importMembers'], ['class' => 'btn button-full mx-2 icon-download']) ?>
                     <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addMemberModal">
                         Ajouter un adhérent
                     </button>
@@ -35,7 +35,7 @@
                                     <tr>
                                         <th><?= __('Prénom') ?></th>
                                         <th><?= __('Nom') ?></th>
-                                        <th>Paiement</th>
+                                        <th class="d-flex justify-content-center">Paiement</th>
                                         <th>Date de naissance</th>
                                         <th>Date d'inscription</th>
                                         <th class="actions"><?= __('Actions') ?></th>
@@ -47,9 +47,9 @@
                                             <td><?= h($member->first_name) ?></td>
                                             <td><?= h($member->last_name) ?></td>
                                             <?php if ($member->contribution_is_paid) : ?>
-                                                <td><span class="badge rounded-pill bg-success text-white px-4 py-1">Validé</span></td>
+                                                <td class="d-flex justify-content-center"><span class="badge rounded-pill orange-background text-white px-4 py-1">Validé</span></td>
                                             <?php else : ?>
-                                                <td><span class="badge rounded-pill bg-warning px-4 py-1">En attente</span></td>
+                                                <td class="d-flex justify-content-center"><span class="badge rounded-pill purple-background text-white px-4 py-1">En attente</span></td>
                                             <?php endif; ?>
                                             <td><?= h($member->birth_date) ?></td>
                                             <td><?= $member->inscription_date->format('d-m-Y') ?></td>

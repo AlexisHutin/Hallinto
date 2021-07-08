@@ -50,7 +50,7 @@
 
           <div class="col-3">
               <div class="card text-center p-2 h-100">
-                <h5>Documents importants</h5>
+                <h5 class="th2-2 font-weight-bold">Documents importants</h5>
                 <ul class="list-group">
                   <li class="list-group-item">
                     <i class="icon-file-text d-inline-block"></i>
@@ -72,9 +72,9 @@
         <div class="row mt-5 mx-0" >
           <div class="col-8 h-100">
             <div class="card text-center p-2 h-100">
-            <h5>Evénements à venir</h5>
+            <h5 class="th2-2 font-weight-bold">Evénements à venir</h5>
             <div class="row m-2">
-              <div class="col-4 p-relative">
+              <div class="col-3 p-relative ">
                 <div class="text-center p-relative d-inline-block">
                   <div class="horizontal-center rounded-corners white-font purple-background w-100 h-100">
                     <div class="horizontal-center">
@@ -86,11 +86,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-8 text-left d-inline-block">
+              <div class="col-9 text-left d-inline-block">
                 <h5><?=$query4[0]->events[0]->event_name?></h5>
-                <p><?=$query4[0]->events[0]->location?></p>
+                <p class="font-weight-bold"><?=$query4[0]->events[0]->location?></p>
                 <p><?=$query4[0]->events[0]->start_date?></p>
-                <p>
+                <p class="purple-font">
                 <?php if($query4[0]->events[0]->participation_number == null){
                     echo("0");
                 }else{ 
@@ -99,7 +99,7 @@
               </div>
             </div>
             <div class="row m-2">
-              <div class="col-4 p-relative">
+              <div class="col-3 p-relative pr-3">
                 <div class="text-center p-relative d-inline-block">
                   <div class="horizontal-center rounded-corners white-font orange-background w-100 h-100">
                     <div class="horizontal-center">
@@ -109,11 +109,11 @@
                   </div>
                 </div>
               </div>
-              <div class="col-8 text-left d-inline-block">
+              <div class="col-9 text-left d-inline-block">
               <h5><?=$query4[0]->events[1]->event_name?></h5>
-                <p><?=$query4[0]->events[1]->location?></p>
+                <p class="font-weight-bold"><?=$query4[0]->events[1]->location?></p>
                 <p><?=$query4[0]->events[1]->start_date?></p>
-                <p>
+                <p class="orange-font">
                 <?php if($query4[0]->events[0]->participation_number == null){
                     echo("0");
                 }else{ 
@@ -125,7 +125,7 @@
         </div>
           <div class="col-4 h-100">
             <div class="card text-center p-2 h-100">
-              <h5>Derniers mouvements comptables</h5>
+              <h5 class="th2-2 font-weight-bold">Derniers mouvements comptables</h5>
 
               <table class="table">
                 <tbody>
