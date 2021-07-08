@@ -201,6 +201,10 @@ li{
   border:2px solid #e5e5e5;
 }
 
+.orange-border{
+  border:2px solid #DD9C88;
+}
+
 .box-shadow{
   box-shadow: 0 0 10px #aaa!important;
 }
@@ -448,4 +452,16 @@ canvas{
 
 #documentsHelp .card-footer{
   background-color:#FAF7F7;
+}
+
+#documentsHelp .icon-dot-3{
+  font-size:12px;
+}
+
+/**********
+    FAQ
+***********/
+
+#faq .box{
+  height:25%;
 }

@@ -48,7 +48,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Formulaire de creation</span>
+                    <span class="tx4 font-weight-bold">Formulaire de creation</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>
                 </div>
@@ -65,7 +65,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Formulaire d'AG</span>
+                    <span class="tx4 font-weight-bold">Formulaire d'AG</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>                 
                 </div>
@@ -82,7 +82,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Dossier de dette</span>
+                    <span class="tx4 font-weight-bold">Dossier de dette</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>                 
                 </div>
@@ -99,7 +99,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Dossier de statuts</span>
+                    <span class=" tx4 font-weight-bold">Dossier de statuts</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>                 
                 </div>
@@ -121,7 +121,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Règlement d'intérieur</span>
+                    <span class="tx4 font-weight-bold">Règlement d'intérieur</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>
                 </div>
@@ -138,7 +138,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Créations d'évènements</span>
+                    <span class="tx4 font-weight-bold">Créations d'évènements</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>                 
                 </div>
@@ -155,7 +155,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Dossier de dette</span>
+                    <span class="tx4 font-weight-bold">Dossier de dette</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>                 
                 </div>
@@ -172,7 +172,7 @@
                 <div class="card-footer py-3">
                   <p class="card-text tx3">
                     <i class="col-1"><?= $this->Html->image('PDF_file_icon.svg', ['alt' => 'PDF icon','class'=>'pdf-img']);?></i>
-                    <span class="col-10 tx4 font-weight-bold">Dossier de statuts</span>
+                    <span class="tx4 font-weight-bold">Dossier de statuts</span>
                     <i class="col-1 icon-dot-3"></i>
                   </p>                 
                 </div>
