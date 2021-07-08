@@ -1,7 +1,6 @@
 <div class="eventsform form-group">
   <?= $this->Form->create($accountingEntry) ?>
   <fieldset>
-    <legend><?= __('Add Accounting Entry') ?></legend>
     <?php
     echo $this->Form->hidden('add_accounting_entry');
     echo $this->Form->control('accounting_entry_type_id', ['options' => $type, 'class' => 'form-control input-form']);

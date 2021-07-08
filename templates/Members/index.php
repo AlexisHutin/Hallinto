@@ -22,6 +22,7 @@
                     <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addMemberModal">
                         Ajouter un adhérent
                     </button>
+                   
                 </div>
             </div>
 

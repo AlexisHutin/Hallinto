@@ -1,7 +1,6 @@
 <div class="members form form-group">
     <?= $this->Form->create($member) ?>
     <fieldset>
-      <legend><?= __('Add Member') ?></legend>
       <?php
         echo $this->Form->hidden('add_member');
         echo $this->Form->control('first_name',['class' =>'form-control','label' => 'First name']);
