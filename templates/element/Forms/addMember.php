@@ -3,6 +3,7 @@
     <fieldset>
       <legend><?= __('Add Member') ?></legend>
       <?php
+        echo $this->Form->hidden('add_member');
         echo $this->Form->control('first_name',['class' =>'form-control','label' => 'First name']);
         echo $this->Form->control('last_name',['class' =>'form-control','label' => 'Last name']);
         echo $this->Form->control('birth_date',['class' =>'form-control','label' => 'Birth date']);

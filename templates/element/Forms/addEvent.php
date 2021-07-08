@@ -3,6 +3,7 @@
     <fieldset>
       <legend><?= __('Add Event') ?></legend>
       <?php
+        echo $this->Form->hidden('add_event');
         echo $this->Form->control('event_name',['class' =>'form-control','label' => 'Event name']);
         echo $this->Form->control('start_date',['class' =>'form-control','label' => 'Start date']);
         echo $this->Form->control('end_date',['class' =>'form-control','label' => 'End date']);
