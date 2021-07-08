@@ -21,6 +21,7 @@
 
   --white:#ffffff;
   --beige: #FDFAF9;
+  --beige2:#FAF7F7;
 }
 
 .white-font{
@@ -43,7 +44,6 @@
   background-color:var(--purple70)!important;
 }
 
-
 .orange-background{
   background-color:var(--orange70)!important;
 }
@@ -54,6 +54,10 @@
 
 .beige-background{
   background-color:var(--beige)!important; ;
+}
+
+.beige2-background{
+  background-color:var(--beige2)!important; ;
 }
 
 .white-background{
@@ -175,6 +179,11 @@ li{
 .card{
   border-radius: 15px;
   border: 2px solid #E1E5EA;
+}
+
+.card-footer{
+  border:none;
+  background:transparent;
 }
 
 .horizontal-center{
