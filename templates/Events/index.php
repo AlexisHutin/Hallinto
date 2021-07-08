@@ -20,12 +20,13 @@
                     <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addEventModal">
                         Ajouter un évenement
                     </button>
+                    <button type="button" class="btn button-full mx-2 icon-filter">
+                        Filtres
+                    </button>
                     <div class="">
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control search input-form" type="search" placeholder="Search" aria-label="Search">
-
                             <i class="icon-search orange-font"></i>
-
                             </input>
                         </form>
                     </div>
@@ -34,15 +35,6 @@
         </div>
         <div class="container-fluid">
             <div class="events index content pt-2">
-                <!-- Filtres -->
-                <div class="row">
-                    <div class="col">
-                        <div class="card mt-2">
-                            <p>Filtres :</p>
-                            <p>ici les différents filtres</p>
-                        </div>
-                    </div>
-                </div>
                 <!-- Liste -->
                 <div class="row">
                     <?php foreach ($events as $event) : ?>
