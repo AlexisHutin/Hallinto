@@ -94,7 +94,7 @@
                 <?php if($query4[0]->events[0]->participation_number == null){
                     echo("0");
                 }else{ 
-                  $query4[0]->events[0]->participation_number; 
+                    echo $query4[0]->events[0]->participation_number; 
                 }?> participants</p>
               </div>
             </div>
@@ -114,10 +114,10 @@
                 <p class="font-weight-bold"><?=$query4[0]->events[1]->location?></p>
                 <p><?=$query4[0]->events[1]->start_date?></p>
                 <p class="orange-font">
-                <?php if($query4[0]->events[0]->participation_number == null){
+                <?php if($query4[0]->events[1]->participation_number == null){
                     echo("0");
                 }else{ 
-                  $query4[0]->events[0]->participation_number; 
+                  echo $query4[0]->events[1]->participation_number; 
                 }?> participants</p>
               </div>
             </div>  
