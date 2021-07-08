@@ -8,7 +8,7 @@ var myPieChart = new Chart(ctx,{
   
   data: {
     datasets: [{
-      data: [35,65],
+      data: [20,80],
       backgroundColor: [gradient,'rgb(225,229,234)']
     }],
 
@@ -40,7 +40,7 @@ var myPieChart = new Chart(ctx,{
   
   data: {
     datasets: [{
-      data: [65,35],
+      data: [80,20],
       backgroundColor: [gradient,'rgb(225,229,234)']
     }],
 

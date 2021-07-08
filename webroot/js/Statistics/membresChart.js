@@ -10,7 +10,7 @@ var dashboardChart = new Chart(ctx, {
     data: {
         labels: pastMonths,
         datasets: [{
-            data: [1,2,3,4,5,6],
+            data: [1,2,1,0,1,2],
             barThickness:25,
             borderWidth: 0,
             backgroundColor: gradient,

@@ -26,15 +26,15 @@
                     <h2 class="th2-2">Nombre des membres</h2>
                         <div class="row d-flex justify-content-center">
                             <div class="col-3 grey-border rounded-corners text-center">
-                            235<br>
-                            + 25 ce mois ci
+                            7<br>
+                            + 2 ce mois ci
                             </div>
                             <div class="col-4 grey-border rounded-corners text-center">
-                            235<br>
+                            10<br>
                             maximum atteint
                             </div>
                             <div class="col-4 grey-border rounded-corners text-center">
-                            235 / 500<br>
+                            7 / 20<br>
                             prochain pallier de membres
                             </div>
                         </div>
@@ -48,7 +48,7 @@
                             <div class="row">
                                 <div class="col-6">
                                     <div class="donut-inner">
-                                        <h5>35%</h5>
+                                        <h5>20%</h5>
                                         <span>+25 ans</span>
                                     </div>
                                     <canvas id="communityChart1">  
@@ -56,7 +56,7 @@
                                 </div>
                                 <div class="col-6">
                                     <div class="donut-inner">
-                                        <h5>65%</h5>
+                                        <h5>80%</h5>
                                         <span>-25 ans</span>
                                     </div>
                                     <canvas id="communityChart2">  
