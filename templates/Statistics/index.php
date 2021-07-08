@@ -42,7 +42,7 @@
                         <canvas id="MembresChart" ></canvas>
                         </div>
                     </div>
-                    <div class="col-6">
+                    <div class="col-6 pr-0">
                         <div class="col-12 mt-3 p-2 grey-border rounded-corners">
                         <h2 class="th2-2">Communauté</h2>
                             <div class="row">
