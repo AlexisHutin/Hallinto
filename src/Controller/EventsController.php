@@ -22,6 +22,32 @@ class EventsController extends AppController
         ->contain('EventTypes');
 
         $this->set(compact('events'));
+
+        $event = $this->Events->newEmptyEntity();
+
+        if ($this->request->is('post')) {
+            $event = $this->Events->patchEntity($event, $this->request->getData());
+          
+            if ($this->Events->save($event)) {
+                $this->Flash->success(__('The event has been saved.'));
+                
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The event could not be saved. Please, try again.'));
+        }
+
+        $this->set(compact('event'));
+
+        $this->loadModel('EventTypes');
+
+        $eventTypes = $this->EventTypes->find('list', [
+            'keyField' => 'id',
+            'valueField' => 'name'
+        ]);
+
+        $eventTypes = $eventTypes->toArray();
+
+        $this->set(compact('eventTypes'));
     }
 
     /**

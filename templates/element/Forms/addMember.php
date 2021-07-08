@@ -15,7 +15,6 @@
           [
               ['value' => '0', 'text' => 'Yes'],
               ['value' => '1', 'text' => 'No']
-
           ]
       );
       ?></div>

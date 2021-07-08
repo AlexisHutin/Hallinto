@@ -16,14 +16,16 @@
             </div>
             <div class="container-fluid text-center">
                 <div class="row mx-2 justify-content-end">
-                <!-- TODO edit link to open modal -->
-                    <?= $this->Html->link(__('Ajouter un évenement'), ['action' => 'add'], ['class' => 'btn button-full mx-2 icon-circle-plus']) ?>
+                    <!-- TODO edit link to open modal -->
+                    <button type="button" class="btn button-full mx-2 icon-circle-plus" data-toggle="modal" data-target="#dashboardModal-addEventModal">
+                        Ajouter un évenement
+                    </button>
                     <div class="">
                         <form class="form-inline my-2 my-lg-0">
                             <input class="form-control search input-form" type="search" placeholder="Search" aria-label="Search">
-                        
+
                             <i class="icon-search orange-font"></i>
-                            
+
                             </input>
                         </form>
                     </div>
@@ -53,7 +55,7 @@
         </div>
     </div>
 </div>
-            
-       
-            
 
+<?=
+$this->element('Pages/modal', ['modalType' => 'addEventModal']);
+?>
