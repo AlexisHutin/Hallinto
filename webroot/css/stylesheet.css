@@ -201,6 +201,10 @@ li{
   border:2px solid #e5e5e5;
 }
 
+.orange-border{
+  border:2px solid #DD9C88;
+}
+
 .box-shadow{
   box-shadow: 0 0 10px #aaa!important;
 }
@@ -236,6 +240,15 @@ li{
   background-color: var(--grey90);
   color:var(--grey70);
 }
+
+.button-secondary{
+  padding:10px 20px;
+  border-radius: 10px;
+  font-weight:600;
+  background-color:var(--grey60);
+  color:var(--white);
+}
+
 
 /*************
     links
@@ -440,4 +453,16 @@ canvas{
 
 #documentsHelp .card-footer{
   background-color:#FAF7F7;
+}
+
+#documentsHelp .icon-dot-3{
+  font-size:12px;
+}
+
+/**********
+    FAQ
+***********/
+
+#faq .box{
+  height:25%;
 }
